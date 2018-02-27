@@ -2,7 +2,7 @@
 ## What can you do?
 ### I am a developer
 You can add new features or fix bugs. If you made an improvement, feel free to open a pull request on GitHub.
-Remember to read the *LibreAnswer contributing guidelines* section in this file.
+Remember to read the **LibreAnswer contributing guidelines** section in this file.
 ### I can't program, but I still want to help
 You can:
  - help translating LibreAnswer, for example by adding support for your native language or improving existing translations. I recommend using the POEdit tool.
