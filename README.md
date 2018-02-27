@@ -1,3 +1,4 @@
+# *WARNING: THIS PROJECT IS STILL UNFINISHED AND IS CONSIDERED AS WORK IN PROGRESS!*
 # LibreAnswer
 ## About
 LibreAnswer is a game and a test making tool inspired by the "Who wants to be a millionaire?" TV show.
