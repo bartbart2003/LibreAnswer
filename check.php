@@ -41,14 +41,17 @@ if ($_SESSION['packType'] == 'standard')
 		}
 		else
 		{
+			$correctAnswerText = htmlentities($queManager->getQuestion($_SESSION['packname'], $_SESSION['questionNumber'])['answer'.$correctAnswer]);
 			echo "<div style='background-color: lightcoral; text-align: center; font-size: 20px; font-weight: bold;'>".gettext('Question')." ".$_SESSION['questionNumber']."</div>";
-			echo "<div style='background-color: lightcoral; text-align: center; font-size: 20px;'>".gettext('Correct answer:')." ".chr(96 + $correctAnswer)."</div>";
+			echo "<div style='background-color: lightcoral; text-align: center; font-size: 20px;'>".gettext('Correct answer:')." ".chr(96 + $correctAnswer)." (".$correctAnswerText.")</div>";
 			echo "<div style='background-color: lightcoral; text-align: center; font-size: 20px; color: black;'>".gettext('Incorrect answer!');
 		}
 	}
 	else
 	{
-		echo "<div style='background-color: lightcoral; text-align: center; font-size: 20px; color: red;'>".gettext('Invalid/no answer passed!')."</div>";
+		echo "<div style='background-color: lightcoral; text-align: center; font-size: 20px; color: black;'>".gettext('Invalid/no answer passed!')."</div>";
+		$correctAnswerText = htmlentities($queManager->getQuestion($_SESSION['packname'], $_SESSION['questionNumber'])['answer'.$correctAnswer]);
+		echo "<div style='background-color: lightcoral; text-align: center; font-size: 20px;'>".gettext('Correct answer:')." ".chr(96 + $correctAnswer)." (".$correctAnswerText.")</div>";
 	}
 	echo '</div>';
 	if ($_SESSION['formAnswer'] == $correctAnswer && $isValidAnswer)
@@ -92,7 +95,6 @@ else if ($_SESSION['packType'] == 'quiz')
 		}
 		else
 		{
-			$queManager = new questionsManager();
 			$correctAnswerText = htmlentities($queManager->getQuestion($_SESSION['packname'], $_SESSION['questionNumber'])['answer'.$correctAnswer]);
 			echo "<div style='background-color: lightcoral; text-align: center; font-size: 20px; font-weight: bold;'>".gettext('Question')." ".$_SESSION['questionNumber']."</div>";
 			echo "<div style='background-color: lightcoral; text-align: center; font-size: 20px;'>".gettext('Correct answer:')." ".chr(96 + $correctAnswer)." (".$correctAnswerText.")</div>";
