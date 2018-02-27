@@ -1,0 +1,238 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Answer v0.1\n"
+"POT-Creation-Date: 2018-02-27 16:25+0100\n"
+"PO-Revision-Date: 2018-02-27 16:26+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: pl_PL\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.5\n"
+"X-Poedit-Basepath: ../../..\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2);\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: admin\n"
+
+#: about.php:7
+msgid "LibreAnswer - About"
+msgstr "LibreAnswer - Informacje"
+
+#: about.php:14
+msgid "A game inspired by the 'Who Wants to Be a Millionaire?' TV show."
+msgstr ""
+"Gra inspirowana programem telewizyjnym 'Who Wants to Be a Millionaire?'."
+
+#: about.php:15
+msgid "Version that this server is using is"
+msgstr "Wersja, jakiej używa ten serwer to"
+
+#: about.php:16
+msgid "Webpage:"
+msgstr "Strona internetowa:"
+
+#: about.php:17
+msgid "Source code:"
+msgstr "Kod źródłowy:"
+
+#: about.php:17
+msgid "LibreAnswer repo on GitHub"
+msgstr "Repozytorium LibreAnswer na GitHubie"
+
+#: about.php:18
+msgid "License"
+msgstr "Licencja"
+
+#: about.php:19
+msgid "LibreAnswer is created by bartbart2003 and SildiN."
+msgstr "LibreAnswer jest stworzony przez bartbart2003 i SildiN."
+
+#: afterlast.php:20
+msgid "LibreAnswer - Congratulations!"
+msgstr "LibreAnswer - Gratulacje!"
+
+#: afterlast.php:21
+msgid "You won the game!"
+msgstr "Wygrałeś grę!"
+
+#: afterlast.php:22 afterlast.php:47 check.php:62 next.php:41 next.php:48
+msgid "End game"
+msgstr "Zakończ grę"
+
+#: afterlast.php:28
+msgid "Answers already saved!"
+msgstr "Pytania już zapisane!"
+
+#: afterlast.php:37
+msgid "You completed the test!"
+msgstr "Skończyłeś test!"
+
+#: afterlast.php:38 question.php:61
+msgid "End test"
+msgstr "Zakończ test"
+
+#: afterlast.php:45
+msgid "You completed the quiz!"
+msgstr "Skończyłeś quiz!"
+
+#: afterlast.php:46
+msgid "Correct answers:"
+msgstr "Poprawne odpowiedzi:"
+
+#: check.php:38 check.php:44 check.php:90 check.php:97
+msgid "Question"
+msgstr "Pytanie"
+
+#: check.php:39 check.php:45 check.php:98 check.php:106
+msgid "Correct answer:"
+msgstr "Poprawna odpowiedź:"
+
+#: check.php:40 check.php:91
+msgid "Correct answer!"
+msgstr "Poprawna odpowiedź!"
+
+#: check.php:46 check.php:99 next.php:40
+msgid "Incorrect answer!"
+msgstr "Zła odpowiedź!"
+
+#: check.php:51 check.php:105 next.php:47
+msgid "Invalid/no answer passed!"
+msgstr "Niepoprawna odpowiedź lub jej brak!"
+
+#: check.php:57 check.php:112 check.php:117 question.php:65
+msgid "Next question"
+msgstr "Następne pytanie"
+
+#: fifty.php:17 hint.php:16
+msgid "Error: lifeline already used!"
+msgstr "Błąd: Koło ratunkowe już użyte!"
+
+#: index.php:32
+msgid "Select a question pack."
+msgstr "Wybierz paczkę pytań."
+
+#: index.php:33
+msgid "Answer the questions."
+msgstr "Odpowiadaj na pytania."
+
+#: index.php:34
+msgid "Check your knowedgle!"
+msgstr "Sprawdź swoją wiedzę!"
+
+#: index.php:36
+msgid "Let's go!"
+msgstr "Zaczynamy!"
+
+#: index.php:37
+msgid "or..."
+msgstr "lub..."
+
+#: index.php:38
+msgid "learn how to create your own question pack"
+msgstr "zobacz, jak stworzyć swoją własną paczkę pytań"
+
+#: index.php:39
+msgid "by bartbart2003 and SildiN"
+msgstr "stworzone przez bartbart2003 i SildiN"
+
+#: index.php:39
+msgid "About"
+msgstr "O projekcie"
+
+#: index.php:39
+msgid "Found a bug? Have an idea? Click here!"
+msgstr "Znalazłeś błąd? Masz jakiś pomysł? Kliknij tutaj!"
+
+#: question.php:29
+msgid "LibreAnswer - Question"
+msgstr "LibreAnswer - Pytanie"
+
+#: question.php:29
+msgid "of"
+msgstr "z"
+
+#: question.php:31
+msgid "HINT"
+msgstr "WSKAZÓWKA"
+
+#: question.php:31
+msgid "50/50"
+msgstr "50/50"
+
+#: question.php:50
+msgid "Clear answer"
+msgstr "Wyczyść odpowiedź"
+
+#: question.php:53 question.php:57
+msgid "Previous question"
+msgstr "Poprzednie pytanie"
+
+#: question.php:61
+msgid "Be careful when ending the test! This action can't be undone!"
+msgstr "Bądź ostrożny przy kończeniu testu! Ta akcja nie może zostać cofnięta!"
+
+#: question.php:70
+msgid "Abort game"
+msgstr "Porzuć grę"
+
+#: question.php:80
+msgid "Hint:"
+msgstr "Wskazówka:"
+
+#: selectpack.php:19
+msgid "Select a question pack:"
+msgstr "Wybierz paczkę pytań:"
+
+#: selectpack.php:28 selectpack.php:32 selectpack.php:36 selectpack.php:40
+msgid "Author:"
+msgstr "Autor:"
+
+#: selectpack.php:28 selectpack.php:32 selectpack.php:36 selectpack.php:40
+msgid "Language:"
+msgstr "Język:"
+
+#: selectpack.php:28 selectpack.php:32 selectpack.php:36 selectpack.php:40
+msgid "Pack type:"
+msgstr "Typ paczki:"
+
+#: selectpack.php:28 selectpack.php:32 selectpack.php:36 selectpack.php:40
+#: selectpack.php:67
+msgid "Show details"
+msgstr "Pokaż szczegóły"
+
+#: selectpack.php:28 selectpack.php:32 selectpack.php:36 selectpack.php:40
+msgid "License:"
+msgstr "Licencja:"
+
+#: selectpack.php:28 selectpack.php:32 selectpack.php:36 selectpack.php:40
+msgid "Description:"
+msgstr "Opis:"
+
+#: selectpack.php:46
+msgid "Username:"
+msgstr "Nazwa użytkownika:"
+
+#: selectpack.php:49
+msgid "Start!"
+msgstr "Start!"
+
+#: selectpack.php:57
+msgid "Hide details"
+msgstr "Ukryj szczegóły"
+
+#~ msgid "Play now!"
+#~ msgstr "Graj teraz!"
+
+#~ msgid "codename"
+#~ msgstr "nazwa kodowa"
+
+#~ msgid "Clear selection"
+#~ msgstr "Wyczyść zaznaczenie"
+
+#~ msgid "I don't answer"
+#~ msgstr "Nie udzielam odpowiedzi"
+
+#~ msgid "v0.1 (codename Max)"
+#~ msgstr "v0.1 (nazwa kodowa Max)"

@@ -1,0 +1,179 @@
+@import url('https://fonts.googleapis.com/css?family=Lato');
+body {
+	font-family: 'Lato', sans-serif;
+}
+
+#okButton {
+	text-decoration: none;
+	color: black;
+	background-color: aquamarine;
+	border: 1px solid black;
+	border-radius: 10px;
+	padding: 12px;
+	text-align: center;
+	display: inline-block;
+	cursor: pointer;
+}
+
+#okButton:hover {
+	transition-duration: 0.5s;
+	background-color: cyan;
+	box-shadow: 0 0 10px 4px cyan;
+}
+
+#endTestButton {
+	text-decoration: none;
+	font-weight: bold;
+	padding: 5px 8px 5px 8px;
+	margin-top: 6px;
+	color: black;
+	background-color: lightblue;
+	border: 1px solid red;
+	border-radius: 10px;
+	text-align: center;
+	display: inline-block;
+	cursor: pointer;
+}
+
+#endTestButton:hover {
+	transition-duration: 0.5s;
+	background-color: cyan;
+	box-shadow: 0 0 10px 4px red;
+}
+
+.detailsButton {
+	text-decoration: none;
+	color: black;
+	background-color: lightskyblue;
+	border: 1px solid black;
+	border-radius: 10px;
+	padding: 3px;
+	text-align: center;
+	display: inline-block;
+	cursor: pointer;
+}
+
+.detailsButton:hover {
+	transition-duration: 0.5s;
+	background-color: lightblue;
+}
+
+#playLink {
+	text-decoration: none;
+	color: black;
+	background-color: aquamarine;
+	font-weight: bold;
+	font-size: 16px;
+	border: 1px solid black;
+	border-radius: 16px;
+	padding: 25px 21px 25px 21px;
+	text-align: center;
+	display: inline-block;
+	cursor: pointer;
+}
+#playLink:hover {
+	transition-duration: 0.5s;
+	background-color: lightgreen;
+	box-shadow: 0 0 10px 4px lime;
+}
+
+#lifelineHintButton {
+	padding-left: 10px;
+	padding-right: 10px;
+	height: 38px;
+	border: 1px solid black;
+	background-color: #ffff66;
+	border-radius: 10px;
+	cursor: pointer;
+}
+
+#lifelineHintButton:hover {
+	transition-duration: 0.5s;
+	background-color: orange;
+	box-shadow: 0 0 15px orange;
+}
+
+#lifelineFFButton {
+	width: 60px;
+	height: 38px;
+	border: 1px solid black;
+	background-color: lightblue;
+	border-radius: 10px;
+	cursor: pointer;
+}
+
+#lifelineFFButton:hover {
+	transition-duration: 0.5s;
+	background-color: cyan;
+	box-shadow: 0 0 15px cyan;
+}
+
+#questionTab {
+	border-radius: 10px;
+	background-color: lightsteelblue;
+	padding: 6px; 
+	display: inline-block;
+	border: 1px solid black;
+	margin: 1px;
+}
+
+#questionTab:hover {
+	transition-duration: 0.5s;
+	background-color: darkcyan;
+	box-shadow: 0 0 10px blue;
+}
+
+#socialDiv {
+	display: inline-block;
+	background-color: lightsteelblue;
+	border-radius: 10px 10px 0px 0px;
+	text-align: left;
+	font-size: 25px;
+	font-weight: bold;
+	padding-top: 5px;
+	width: 24vw;
+	min-width: 200px;
+}
+
+#titleDiv {
+	display: inline-block;
+	background-color: gray;
+	border-radius: 0px 0px 10px 10px;
+	text-align: center;
+	font-size: 40px;
+	font-weight: bold;
+	width: 24vw;
+	min-width: 200px;
+}
+
+#homepageTextDiv {
+	font-size: 20px;
+	text-align: center;
+	background-color: lightblue;
+	font-weight: bold;
+	display: inline-block;
+	margin: auto;
+	width: 20vw;
+	min-width: 180px;
+}
+
+#packTab {
+	vertical-align: top;
+	border: 1px solid black;
+	border-radius: 5px;
+	display: inline-block;
+	margin-bottom: 5px;
+	padding: 5px;
+	margin: 5px;
+}
+
+#usernameInput {
+	border: 1px solid black;
+	background-color: gainsboro;
+	margin-bottom: 5px;
+}
+
+#usernameInput:focus {
+	transition-duration: 0.2s;
+	box-shadow: 0 0 14px 1px blue;
+}

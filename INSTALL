@@ -1,0 +1,14 @@
+=== LibreAnswer installation guide ===
+Requirements:
+- Web server with PHP, MySQLi, .htaccess files and gettext support
+- MySQL server
+PhpMyAdmin is recommended for easy importing of SQL files (but not required, although this tutorial will be using it).
+
+Installation:
+1. Create a new database (you can call it whatever you want).
+2. Create table "packlist" in that database using packlist.sql file:
+	- in PhpMyAdmin select your database in the left panel
+	- go to "Import" tab
+	- paste the contents of the packlist.sql file (located in <answer>/sql) and press ok
+3. Adjust the values in "SERVER CONFIG" section in main.php and admin/main.php files according to your setup.
+4. By default, the game doesn't have any question packs included. If you want to learn how to install one, read the tutorial on the LibreAnswer for Creators webpage.
