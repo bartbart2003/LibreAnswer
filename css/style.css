@@ -15,10 +15,15 @@ body {
 	cursor: pointer;
 }
 
-#okButton:hover {
+#okButton:hover:enabled {
 	transition-duration: 0.5s;
 	background-color: cyan;
 	box-shadow: 0 0 10px 4px cyan;
+}
+
+#okButton:disabled {
+	transition-duration: 0.3s;
+	background-color: lightgray;
 }
 
 #endTestButton {
@@ -44,7 +49,7 @@ body {
 .detailsButton {
 	text-decoration: none;
 	color: black;
-	background-color: lightskyblue;
+	background-color: aliceblue;
 	border: 1px solid black;
 	border-radius: 10px;
 	padding: 3px;
@@ -132,7 +137,7 @@ body {
 	font-weight: bold;
 	padding-top: 5px;
 	width: 24vw;
-	min-width: 240px;
+	min-width: 255px;
 }
 
 #titleDiv {
@@ -143,7 +148,7 @@ body {
 	font-size: 40px;
 	font-weight: bold;
 	width: 24vw;
-	min-width: 240px;
+	min-width: 255px;
 }
 
 #homepageTextDiv {
@@ -160,16 +165,17 @@ body {
 #packTab {
 	vertical-align: top;
 	border: 1px solid black;
-	border-radius: 5px;
 	display: inline-block;
+	margin-left: 5px;
+	margin-right: 5px;
 	margin-bottom: 5px;
-	padding: 5px;
-	margin: 5px;
+	margin-top: 2px;
+	padding: 6px;
 }
 
 #usernameInput {
-	border: 1px solid black;
-	background-color: gainsboro;
+	border: 2px solid black;
+	background-color: white;
 	margin-bottom: 5px;
 }
 

@@ -119,38 +119,42 @@ class questionPacksManager
 	
 	public function importQuestionPack($packFilename)
 	{
-		$csvFile = file('import/'.$packFilename);
-		$data = str_getcsv($csvFile[0]);
-		$packV_packname = $data[0];
-		$packV_packDisplayName = $data[1];
-		$packV_packType = $data[2];
-		$packV_packAuthor = $data[3];
-		$packV_packDescription = $data[4];
-		$packV_packLanguage = $data[5];
-		$packV_packLicense = $data[6];
 		$dbConnector = new databaseConnector();
 		$dbConnector->connectToDatabase();
-		$query = $dbConnector->conn->prepare("INSERT INTO packlist (packname, packDisplayName, packType, packAuthor, packDescription, packLanguage, license) VALUES (?, ?, ?, ?, ?, ?, ?);");
-		$query->bind_param('sssssss', $packV_packname, $packV_packDisplayName, $packV_packType, $packV_packAuthor, $packV_packDescription, $packV_packLanguage, $packV_packLicense);
-		$results = $query->execute();
-		$query = "CREATE TABLE pack_".$packV_packname." (`questionID` int(11) NOT NULL AUTO_INCREMENT, `question` text CHARACTER SET utf8 NOT NULL, `hint` text CHARACTER SET utf8 NOT NULL, `answer1` text CHARACTER SET utf8 NOT NULL, `answer2` text CHARACTER SET utf8 NOT NULL, `answer3` text CHARACTER SET utf8 NOT NULL, `answer4` text CHARACTER SET utf8 NOT NULL, `correctAnswer` text CHARACTER SET utf8 NOT NULL, PRIMARY KEY (`questionID`));";
-		$results = $dbConnector->conn->query($query);
-		if ($packV_packType == 'test')
-		{
-			$query = "CREATE TABLE IF NOT EXISTS answers_".$packV_packname." (`answerID` int(11) NOT NULL AUTO_INCREMENT, `username` text CHARACTER SET utf8 NOT NULL, `userAnswers` text CHARACTER SET utf8 NOT NULL, PRIMARY KEY (`answerID`));";
-			$results = $dbConnector->conn->query($query);
-		}
 		$csvImportFile = file('import/'.$packFilename);
 		$i = 0;
+		$packImport_packname = '';
 		foreach($csvImportFile as $line)
 		{
-			if ($i!=0)
+			if (substr($line, 0, 1) == '#')
 			{
-				$query1 = $dbConnector->conn->prepare("INSERT INTO pack_".$packV_packname." (question, hint, answer1, answer2, answer3, answer4, correctAnswer) VALUES (?, ?, ?, ?, ?, ?, ?);");
-				$query1->bind_param('sssssss', str_getcsv($line)[0], str_getcsv($line)[1], str_getcsv($line)[2], str_getcsv($line)[3], str_getcsv($line)[4], str_getcsv($line)[5], str_getcsv($line)[6]);
-				$results = $query1->execute();
+				// IF: Comment
 			}
-			$i++;
+			else
+			{
+				// IF: Not comment
+				if ($i == 0)
+				{
+					$packImport_packname = str_getcsv($line)[0];
+					$query = $dbConnector->conn->prepare("INSERT INTO packlist (packname, packDisplayName, packType, packAuthor, packDescription, packLanguage, license) VALUES (?, ?, ?, ?, ?, ?, ?);");
+					$query->bind_param('sssssss', $packImport_packname, str_getcsv($line)[1], str_getcsv($line)[2], str_getcsv($line)[3], str_getcsv($line)[4], str_getcsv($line)[5], str_getcsv($line)[6]);
+					$results = $query->execute();
+					$query = "CREATE TABLE IF NOT EXISTS pack_".$packImport_packname." (`questionID` int(11) NOT NULL AUTO_INCREMENT, `question` text CHARACTER SET utf8 NOT NULL, `hint` text CHARACTER SET utf8 NOT NULL, `answer1` text CHARACTER SET utf8 NOT NULL, `answer2` text CHARACTER SET utf8 NOT NULL, `answer3` text CHARACTER SET utf8 NOT NULL, `answer4` text CHARACTER SET utf8 NOT NULL, `correctAnswer` text CHARACTER SET utf8 NOT NULL, PRIMARY KEY (`questionID`));";
+					$results = $dbConnector->conn->query($query);
+					if (str_getcsv($line)[2] == 'test')
+					{
+						$query = "CREATE TABLE IF NOT EXISTS answers_".$packImport_packname." (`answerID` int(11) NOT NULL AUTO_INCREMENT, `username` text CHARACTER SET utf8 NOT NULL, `userAnswers` text CHARACTER SET utf8 NOT NULL, PRIMARY KEY (`answerID`));";
+						$results = $dbConnector->conn->query($query);
+					}
+				}
+				else
+				{
+					$query1 = $dbConnector->conn->prepare("INSERT INTO pack_".$packImport_packname." (question, hint, answer1, answer2, answer3, answer4, correctAnswer) VALUES (?, ?, ?, ?, ?, ?, ?);");
+					$query1->bind_param('sssssss', str_getcsv($line)[0], str_getcsv($line)[1], str_getcsv($line)[2], str_getcsv($line)[3], str_getcsv($line)[4], str_getcsv($line)[5], str_getcsv($line)[6]);
+					$results = $query1->execute();
+				}
+				$i++;
+			}
 		}
 	}
 	

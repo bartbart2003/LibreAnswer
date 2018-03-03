@@ -1,0 +1,10 @@
+=== LibreAnswer Changelog ===
+v0.1:
+ - initial release
+v0.2:
+ - require username only for "test" type packs
+ - improve import function
+ - add support for comments in AQF files (# at the begginning of a line)
+ - remove "linux_pl" question pack
+ - slightly modified "tech" question pack
+ - some other improvements

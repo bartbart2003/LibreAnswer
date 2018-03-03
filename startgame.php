@@ -2,9 +2,10 @@
 // Main
 require_once 'private/main.php';
 session_start();
+session_destroy();
+session_start();
 echo 'Starting game...';
 (isset($_POST['packname']) && $_POST['packname'] != '') or die("<br>Error: No question pack specified! <a href='selectpack.php'>Return</a>");
-(isset($_POST['username']) && $_POST['username'] != '') or die("<br>Error: No username specified! <a href='selectpack.php'>Return</a>");
 $quePackManager = new questionPacksManager();
 $results = $quePackManager->getQuestionPacks();
 $packnameForSession = '';
@@ -17,6 +18,10 @@ while ($row = $results->fetch_assoc())
 		$packType = $row['packType'];
 		break;
 	}
+}
+if ($row['packType'] == 'test')
+{
+	(isset($_POST['username']) && $_POST['username'] != '') or die("<br>Error: No username specified! <a href='selectpack.php'>Return</a>");
 }
 if ($packnameForSession == '')
 {

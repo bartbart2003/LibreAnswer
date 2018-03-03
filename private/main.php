@@ -6,8 +6,8 @@ class databaseConnector
 	private $username = 'username';
 	private $password = 'password';
 	private $database = 'database';
-	
 	# END OF CONFIG #
+	
 	# Connection variable
 	public $conn;
 	function connectToDatabase()

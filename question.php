@@ -11,6 +11,7 @@ if ($_SESSION['packType'] == 'test')
 <head>
 <title>LibreAnswer</title>
 <script src='js/jquery.js'></script>
+<link rel="shortcut icon" href="favicon.ico" >
 <link rel='stylesheet' type='text/css' href='css/style.css'>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
 <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
@@ -65,7 +66,7 @@ else if ($_SESSION['packType'] == 'test')
 		echo " | <input type='submit' value='".gettext('Next question')." >' formaction='next.php' style='margin-top: 6px; padding: 5px;' id='okButton'>";
 	}
 }
-if ($_SESSION['packType'] == 'quiz')
+if ($_SESSION['packType'] == 'standard' || $_SESSION['packType'] == 'quiz')
 {
 	echo "<br><a href='endgame.php' style='color: black; font-size: 16px;'>".gettext('Abort game')."</a>";
 }

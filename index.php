@@ -5,6 +5,7 @@ require_once 'lang.php';
 <html>
 <head>
 <title>LibreAnswer</title>
+<link rel="shortcut icon" href="favicon.ico" >
 <link rel='stylesheet' type='text/css' href='css/style.css'>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
 <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
@@ -28,7 +29,7 @@ body {
 <span style='color: white'>Libre</span><span style='color: cyan'>A</span><span style='color: yellow'>n</span><span style='color: orange'>s</span><span style='color: cyan'>w</span><span style='color: yellow'>e</span><span style='color: orange'>r</span>
 </div><br>
 <!-- Version and text lines -->
-<div id='homepageTextDiv' style='background-color: burlywood; font-size: 16px;'>v0.1</div><br>
+<div id='homepageTextDiv' style='background-color: burlywood; font-size: 16px;'>v0.2</div><br>
 <div id='homepageTextDiv'><?php echo gettext('Select a question pack.') ?></div><br>
 <div id='homepageTextDiv'><?php echo gettext('Answer the questions.') ?></div><br>
 <div id='homepageTextDiv' style='border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;'><?php echo gettext('Check your knowedgle!') ?></div><br>
