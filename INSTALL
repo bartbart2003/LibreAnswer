@@ -10,5 +10,5 @@ Installation:
 	- in PhpMyAdmin select your database in the left panel
 	- go to "Import" tab
 	- paste the contents of the packlist.sql file (located in <answer>/sql) and press ok
-3. Adjust the values in "SERVER CONFIG" section in main.php and admin/main.php files according to your setup.
+3. Adjust the values in "SERVER CONFIG" section in private/main.php and admin/private/main.php files according to your setup.
 4. By default, the game doesn't have any question packs included. If you want to learn how to install one, read the tutorial on the LibreAnswer for Creators webpage.

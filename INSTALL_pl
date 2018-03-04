@@ -10,5 +10,5 @@ Instalacja:
 	- w PhpMyAdmin wybierz swoją bazę danych w panelu po lewej
 	- przejdź do zakładki "Import"
 	- wklej zawartość pliku packlist.sql (zlokalizowanego w <answer>/sql) i wciśnij ok
-3. Dostosuj wartości w sekcji "SERVER CONFIG" w plikach main.php i admin/main.php zgodnie z twoją konfiguracją.
+3. Dostosuj wartości w sekcji "SERVER CONFIG" w plikach private/main.php i admin/private/main.php zgodnie z twoją konfiguracją.
 4. Domyślnie, gra nie ma dołączonych żadnych paczek pytań. Jeśli chcesz nauczyć się ich instalować, przeczytaj poradnik na stronie LibreAnswer Dla Twórców.
