@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <?php
 session_start();
 isset($_SESSION['gameStarted']) or die ("Error: Game not started!<br><a href='index.php'>Return</a>");
@@ -88,8 +89,8 @@ function getFF()
 	document.getElementById('lifelineFFButton').style.visibility = 'hidden';
 	$.get('fifty.php', function(data)
 	{
-		document.getElementById('answersForm').getElementsByClassName('Answer' + data[0] + 'FormSpan')[0].style.backgroundColor = 'red';
-		document.getElementById('answersForm').getElementsByClassName('Answer' + data[1] + 'FormSpan')[0].style.backgroundColor = 'red';
+		document.getElementById('answersForm').getElementsByClassName('answer' + data[0].toUpperCase() + 'FormSpan')[0].style.backgroundColor = 'red';
+		document.getElementById('answersForm').getElementsByClassName('answer' + data[1].toUpperCase() + 'FormSpan')[0].style.backgroundColor = 'red';
 	});
 }
 

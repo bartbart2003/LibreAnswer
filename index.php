@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <?php
 // Translations
 require_once 'lang.php';
