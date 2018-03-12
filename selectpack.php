@@ -23,25 +23,32 @@ require_once 'private/main.php';
 <?php
 $quePacksManager = new questionPacksManager();
 $results = $quePacksManager->getQuestionPacks();
-//Question packs
+// Question packs
+$i = 0;
 while ($row = $results->fetch_assoc())
 {
+	$i++;
 	if ($row['packType'] == 'standard')
 	{
-		echo "<span style='background-color: lightsteelblue' id='packTab'><label><input type='radio' name='packname' onclick='disableUsernameBox()' value='".$row['packname']."'><b>".$row['packDisplayName']."</b></label><br>".gettext("Author:")." ".$row['packAuthor']."<br>".gettext("Language:")." ".$row['packLanguage']."<br>".gettext("Pack type:")." ".$row['packType']."<br><button class='detailsButton' id='detailsButton_".$row['packname']."' type='button' onclick=\"showDetails('".$row['packname']."')\">".gettext('Show details')."</button><span class='packDetails_".$row['packname']."' style='visibility: hidden; display: none;'><br>".gettext("License:")." ".$row['license']."<br>".gettext("Description:")." ".$row['packDescription']."</span></span>";
+		echo "<span style='background-color: lightsteelblue' id='packTab'><label><input type='radio' name='packname' onclick='disableUsernameBox()'";
 	}
 	else if ($row['packType'] == 'test')
 	{
-		echo "<span style='background-color: orange' id='packTab'><label><input type='radio' name='packname' onclick='enableUsernameBox()' value='".$row['packname']."'><b>".$row['packDisplayName']."</b></label><br>".gettext("Author:")." ".$row['packAuthor']."<br>".gettext("Language:")." ".$row['packLanguage']."<br>".gettext("Pack type:")." ".$row['packType']."<br><button class='detailsButton' id='detailsButton_".$row['packname']."' type='button' onclick=\"showDetails('".$row['packname']."')\">".gettext('Show details')."</button><span class='packDetails_".$row['packname']."' style='visibility: hidden; display: none;'><br>".gettext("License:")." ".$row['license']."<br>".gettext("Description:")." ".$row['packDescription']."</span></span>";
+		echo "<span style='background-color: orange' id='packTab'><label><input type='radio' name='packname' onclick='enableUsernameBox()'";
 	}
 	else if ($row['packType'] == 'quiz')
 	{
-		echo "<span style='background-color: lime' id='packTab'><label><input type='radio' name='packname' onclick='disableUsernameBox()' value='".$row['packname']."'><b>".$row['packDisplayName']."</b></label><br>".gettext("Author:")." ".$row['packAuthor']."<br>".gettext("Language:")." ".$row['packLanguage']."<br>".gettext("Pack type:")." ".$row['packType']."<br><button class='detailsButton' id='detailsButton_".$row['packname']."' type='button' onclick=\"showDetails('".$row['packname']."')\">".gettext('Show details')."</button><span class='packDetails_".$row['packname']."' style='visibility: hidden; display: none;'><br>".gettext("License:")." ".$row['license']."<br>".gettext("Description:")." ".$row['packDescription']."</span></span>";
+		echo "<span style='background-color: lime' id='packTab'><label><input type='radio' name='packname' onclick='disableUsernameBox()'";
 	}
 	else
 	{
-		echo "<span style='background-color: lightgray; vertical-align: top; border: 1px solid black; border-radius: 5px; display: inline-block; margin-bottom: 5px; padding: 5px; margin: 5px;'><label><input type='radio' name='packname' value='".$row['packname']."'><b>".$row['packDisplayName']."</b></label><br>".gettext("Author:")." ".$row['packAuthor']."<br>".gettext("Language:")." ".$row['packLanguage']."<br>".gettext("Pack type:")." ".$row['packType']."<br><button class='detailsButton' id='detailsButton_".$row['packname']."' type='button' onclick=\"showDetails('".$row['packname']."')\">".gettext('Show details')."</button><span class='packDetails_".$row['packname']."' style='visibility: hidden; display: none;'><br>".gettext("License:")." ".$row['license']."<br>".gettext("Description:")." ".$row['packDescription']."</span></span>";
+		echo "<span style='background-color: lightgray;' id='packTab'><label><input type='radio' name='packname' onclick='disableUsernameBox()'";
 	}
+	echo " value='".htmlentities($row['packname'])."'><b>".htmlentities($row['packDisplayName'])."</b></label><br>".gettext("Author:")." ".htmlentities($row['packAuthor'])."<br>".gettext("Language:")." ".htmlentities($row['packLanguage'])."<br>".gettext("Pack type:")." ".htmlentities($row['packType'])."<br>".gettext("Difficulty:")." ".str_repeat('★', htmlentities($row['difficulty']))."<br><button class='detailsButton' id='detailsButton_".htmlentities($row['packname'])."' type='button' onclick=\"showDetails('".htmlentities($row['packname'])."')\">".gettext('Show details')."</button><span class='packDetails_".htmlentities($row['packname'])."' style='visibility: hidden; display: none;'><br>".gettext("License:")." ".htmlentities($row['license'])."<br>".gettext("Description:")." ".htmlentities($row['packDescription'])."</span></span>";
+}
+if ($i == 0)
+{
+	echo "<div style='font-size: 20px; margin: 20px;'>".gettext("No question packs available")."</div>";
 }
 ?>
 <br>
@@ -51,7 +58,7 @@ while ($row = $results->fetch_assoc())
 <input type='text' name='username' id='usernameInput'>
 </div>
 <!-- OK button -->
-<input type='submit' value='<?php echo gettext('Start!') ?>' style='width: 70px; height: 46px; font-weight: bold;' id='okButton'>
+<input type='submit' value='<?php echo gettext('Start!') ?>' style='width: 85px; height: 55px; font-weight: bold;' id='okButton'>
 </form>
 </div>
 <script>

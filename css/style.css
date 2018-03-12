@@ -3,6 +3,10 @@ body {
 	font-family: 'Lato', sans-serif;
 }
 
+input[type='radio'] {
+	transform: scale(1.1, 1.1);
+}
+
 #okButton {
 	text-decoration: none;
 	color: black;

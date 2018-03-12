@@ -1,6 +1,7 @@
 === LibreAnswer Changelog ===
 v0.1:
  - initial release
+ 
 v0.2:
  - require username only for "test" type packs
  - improve import function
@@ -8,3 +9,20 @@ v0.2:
  - remove "linux_pl" question pack
  - slightly modified "tech" question pack
  - some other improvements
+
+v0.2.1:
+ - mostly bugfix release
+ 
+v0.3:
+ - fix install instructions
+ - larger radio buttons
+ - add link for aborting test
+ - add pack attributes
+ - add true/false questions support
+ - add info when no question packs are available
+ - add extra info for questions (optional)
+ - add difficulty note
+ - use htmlentities for questions text (so now HTML tags are not allowed in questions)
+ - update question packs to reflect changes in AQF format
+ - new question pack: "Różne" ("Various") by bartbart2003
+ - improve code

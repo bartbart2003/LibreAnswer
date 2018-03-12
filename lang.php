@@ -1,4 +1,5 @@
 <?php
+// This file is meant to be included in other scripts. It sets the language in gettext based on user browser config or GET parameter.
 $lang = $_SERVER['HTTP_ACCEPT_LANGUAGE'];
 $langShort = 'en';
 if (isset($_GET['lang']) && $_GET['lang'] != '')

@@ -1,4 +1,5 @@
 <?php
+// 50/50 lifeline script
 session_start();
 // Main
 require_once 'private/main.php';

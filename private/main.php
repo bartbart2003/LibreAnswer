@@ -70,6 +70,30 @@ class questionsManager
 		$row = $results->fetch_assoc();
 		return $row['correctAnswer'];
 	}
+	
+	public function getQuestionType($questionID, $packname)
+	{
+		$dbConnector = new databaseConnector();
+		$dbConnector->connectToDatabase();
+		$query = $dbConnector->conn->prepare("SELECT * FROM pack_".$packname." WHERE questionID=?");
+		$query->bind_param('s', $questionID);
+		$query->execute();
+		$results = $query->get_result();
+		$row = $results->fetch_assoc();
+		return $row['questionType'];
+	}
+	
+	public function getExtraInfo($questionID, $packname)
+	{
+		$dbConnector = new databaseConnector();
+		$dbConnector->connectToDatabase();
+		$query = $dbConnector->conn->prepare("SELECT * FROM pack_".$packname." WHERE questionID=?");
+		$query->bind_param('s', $questionID);
+		$query->execute();
+		$results = $query->get_result();
+		$row = $results->fetch_assoc();
+		return $row['questionExtra'];
+	}
 }
 class userAnswersManager
 {

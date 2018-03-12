@@ -1,4 +1,5 @@
 <?php
+// Hint lifeline script
 session_start();
 // Main
 require_once 'private/main.php';

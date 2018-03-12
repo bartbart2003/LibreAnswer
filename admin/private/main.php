@@ -136,10 +136,10 @@ class questionPacksManager
 				if ($i == 0)
 				{
 					$packImport_packname = str_getcsv($line)[0];
-					$query = $dbConnector->conn->prepare("INSERT INTO packlist (packname, packDisplayName, packType, packAuthor, packDescription, packLanguage, license) VALUES (?, ?, ?, ?, ?, ?, ?);");
-					$query->bind_param('sssssss', $packImport_packname, str_getcsv($line)[1], str_getcsv($line)[2], str_getcsv($line)[3], str_getcsv($line)[4], str_getcsv($line)[5], str_getcsv($line)[6]);
+					$query = $dbConnector->conn->prepare("INSERT INTO packlist (packname, packDisplayName, packType, packAuthor, packDescription, packLanguage, license, attributes, difficulty) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);");
+					$query->bind_param('sssssssss', $packImport_packname, str_getcsv($line)[1], str_getcsv($line)[2], str_getcsv($line)[3], str_getcsv($line)[4], str_getcsv($line)[5], str_getcsv($line)[6], str_getcsv($line)[7], str_getcsv($line)[8]);
 					$results = $query->execute();
-					$query = "CREATE TABLE IF NOT EXISTS pack_".$packImport_packname." (`questionID` int(11) NOT NULL AUTO_INCREMENT, `question` text CHARACTER SET utf8 NOT NULL, `hint` text CHARACTER SET utf8 NOT NULL, `answer1` text CHARACTER SET utf8 NOT NULL, `answer2` text CHARACTER SET utf8 NOT NULL, `answer3` text CHARACTER SET utf8 NOT NULL, `answer4` text CHARACTER SET utf8 NOT NULL, `correctAnswer` text CHARACTER SET utf8 NOT NULL, PRIMARY KEY (`questionID`));";
+					$query = "CREATE TABLE IF NOT EXISTS pack_".$packImport_packname." (`questionID` int(11) NOT NULL AUTO_INCREMENT, `question` text CHARACTER SET utf8 NOT NULL, `hint` text CHARACTER SET utf8 NOT NULL, `answer1` text CHARACTER SET utf8 NOT NULL, `answer2` text CHARACTER SET utf8 NOT NULL, `answer3` text CHARACTER SET utf8 NOT NULL, `answer4` text CHARACTER SET utf8 NOT NULL, `correctAnswer` text CHARACTER SET utf8 NOT NULL, `questionType` text CHARACTER SET utf8 NOT NULL, `questionExtra` text CHARACTER SET utf8 NOT NULL, PRIMARY KEY (`questionID`));";
 					$results = $dbConnector->conn->query($query);
 					if (str_getcsv($line)[2] == 'test')
 					{
@@ -149,8 +149,8 @@ class questionPacksManager
 				}
 				else
 				{
-					$query1 = $dbConnector->conn->prepare("INSERT INTO pack_".$packImport_packname." (question, hint, answer1, answer2, answer3, answer4, correctAnswer) VALUES (?, ?, ?, ?, ?, ?, ?);");
-					$query1->bind_param('sssssss', str_getcsv($line)[0], str_getcsv($line)[1], str_getcsv($line)[2], str_getcsv($line)[3], str_getcsv($line)[4], str_getcsv($line)[5], str_getcsv($line)[6]);
+					$query1 = $dbConnector->conn->prepare("INSERT INTO pack_".$packImport_packname." (question, hint, answer1, answer2, answer3, answer4, correctAnswer, questionType, questionExtra) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);");
+					$query1->bind_param('sssssssss', str_getcsv($line)[0], str_getcsv($line)[1], str_getcsv($line)[2], str_getcsv($line)[3], str_getcsv($line)[4], str_getcsv($line)[5], str_getcsv($line)[6], str_getcsv($line)[7], str_getcsv($line)[8]);
 					$results = $query1->execute();
 				}
 				$i++;

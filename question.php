@@ -30,18 +30,48 @@ $questionsCount = $queManager->getQuestionsCount($_SESSION['packname']);
 ?>
 <div style='background-color: #C1B596; text-align: center; font-size: 20px; border-radius: 10px;'><?php echo gettext('LibreAnswer - Question') ?> <?php echo $_SESSION['questionNumber'] ?> <?php echo gettext('of') ?> <?php echo $questionsCount ?></div>
 <!-- Lifelines -->
-<div style='background-color: aquamarine; text-align: center; font-size: 20px; border-radius: 10px; width: 240px; margin: 0 auto; padding-left: 15px; padding-right: 15px;'><?php if (strpos($_SESSION['lifelines'],'h') !== false) { echo "<button onclick='getHint();' id='lifelineHintButton'>".gettext('HINT')."</button>"; } ?><?php if (strpos($_SESSION['lifelines'],'f') !== false) { echo "<button onclick='getFF();' id='lifelineFFButton'>".gettext('50/50')."</button>"; } ?></div>
+<div style='background-color: aquamarine; text-align: center; font-size: 20px; border-radius: 10px; width: 240px; margin: 0 auto; padding-left: 15px; padding-right: 15px;'><?php if (strpos($_SESSION['lifelines'],'h') !== false) { echo "<button onclick='getHint();' id='lifelineHintButton'>".gettext('HINT')."</button>"; } ?><?php if (strpos($_SESSION['lifelines'],'f') !== false && $row['questionType'] != 'tf') { echo "<button onclick='getFF();' id='lifelineFFButton'>".gettext('50/50')."</button>"; } ?></div>
 <!-- Question text -->
-<div style='text-align: center; font-size: 20px; font-weight: bold;'><?php echo $row['question'] ?></div>
+<div style='text-align: center; font-size: 20px; font-weight: bold;'><?php echo htmlentities($row['question']) ?></div>
 <!-- Hint div -->
 <div id='hintDiv' style='visibility: hidden; text-align: center; background-color: lime; border-radius: 10px;'></div>
 <form method='get' style='text-align: center;' id='answersForm'>
-<!-- ABCD Answers -->
-<label><span id='questionTab' class='answerAFormSpan'><input type='radio' name='formAnswer' value='1' id='formAnswer1' <?php if ($questionUserAnswer == '1') { echo 'checked'; } ?>><b>a</b> <?php echo htmlentities($row['answer1']) ?></span></label>
-<label><span id='questionTab' class='answerBFormSpan'><input type='radio' name='formAnswer' value='2' id='formAnswer2' <?php if ($questionUserAnswer == '2') { echo 'checked'; } ?>><b>b</b> <?php echo htmlentities($row['answer2']) ?></span></label><br> 
-<label><span id='questionTab' class='answerCFormSpan'><input type='radio' name='formAnswer' value='3' id='formAnswer3' <?php if ($questionUserAnswer == '3') { echo 'checked'; } ?>><b>c</b> <?php echo htmlentities($row['answer3']) ?></span></label>
-<label><span id='questionTab' class='answerDFormSpan'><input type='radio' name='formAnswer' value='4' id='formAnswer4' <?php if ($questionUserAnswer == '4') { echo 'checked'; } ?>><b>d</b> <?php echo htmlentities($row['answer4']) ?></span></label><br>
 <?php
+// ABCD Answers
+if ($row['questionType'] == 'abcd')
+{
+	for ($i = 1; $i<5; $i++)
+	{
+		echo "<label><span id='questionTab' class='answer".strtoupper(chr(96 + $i))."FormSpan'><input type='radio' name='formAnswer' value='".$i."' id='formAnswer".$i."' ";
+		if ($questionUserAnswer == $i)
+		{
+			echo 'checked';
+		}
+		echo "><b>".chr(96 + $i)."</b> ".htmlentities($row['answer'.$i])."</span></label>";
+		if ($i == 2 || $i == 4)
+		{
+			echo "<br>";
+		}
+	}
+}
+if ($row['questionType'] == 'tf')
+{
+	echo "<div style='display: inline-block; text-align: center; width: 400px;'>";
+	for ($i = 1; $i<5; $i++)
+	{
+		echo "<div style='margin-bottom: 5px; border: 1px solid black;'>";
+		echo "<div style='background-color: lightsteelblue; margin-bottom: 2px; padding-left: 5px; padding-right: 5px;'>";
+		echo htmlentities($row['answer'.$i]);
+		echo "</div>";
+		echo "<div style='margin-bottom: 2px;'>";
+		echo "<label><div style='display: inline-block; height: 30px; background-color: lightgreen; padding-left: 2px; padding-right: 2px;'><input type='radio' name='tfAnswer".$i."' value='t' id='tfAnswer".$i."'>".gettext("True")."</div></label>";
+		echo "<label><div style='display: inline-block; height: 30px; background-color: lightcoral; padding-left: 2px; padding-right: 2px;'><input type='radio' name='tfAnswer".$i."' value='f' id='tfAnswer".$i."'>".gettext("False")."</div></label>";
+		echo "</div>";
+		echo "</div>";
+	}
+	echo "</div>";
+	echo "<br>";
+}
 // Submit buttons
 if ($_SESSION['packType'] == 'standard' || $_SESSION['packType'] == 'quiz')
 {
@@ -69,7 +99,11 @@ else if ($_SESSION['packType'] == 'test')
 }
 if ($_SESSION['packType'] == 'standard' || $_SESSION['packType'] == 'quiz')
 {
-	echo "<br><a href='endgame.php' style='color: black; font-size: 16px;'>".gettext('Abort game')."</a>";
+	echo "<br><br><a href='endgame.php' style='color: black; font-size: 16px;'>".gettext('Abort game')."</a>";
+}
+if ($_SESSION['packType'] == 'test')
+{
+	echo "<br><br><a href='endgame.php' style='color: black; font-size: 16px;'>".gettext('Abort test')."</a>";
 }
 ?>
 </form>
