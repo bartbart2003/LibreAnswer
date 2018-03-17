@@ -33,3 +33,5 @@ Issues reported on GitHub **must** be in **English**.
 ## Contributing
 Contributing information and guidelines are in the CONTRIBUTING.md file.
 If you want to get involved, please read it.
+## Question packs repo
+Our official question packs repository is available at https://github.com/bartbart2003/libreanswer-packs.
