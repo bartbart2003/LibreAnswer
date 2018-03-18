@@ -37,7 +37,7 @@ $questionsCount = $queManager->getQuestionsCount($_SESSION['packname']);
 <div id='hintDiv' style='visibility: hidden; text-align: center; background-color: lime; border-radius: 10px;'></div>
 <form method='get' style='text-align: center;' id='answersForm'>
 <?php
-// ABCD Answers
+// ABCD answers
 if ($row['questionType'] == 'abcd')
 {
 	for ($i = 1; $i<5; $i++)
@@ -54,6 +54,8 @@ if ($row['questionType'] == 'abcd')
 		}
 	}
 }
+
+// True/false answers
 if ($row['questionType'] == 'tf')
 {
 	echo "<div style='display: inline-block; text-align: center; width: 400px;'>";
@@ -64,8 +66,8 @@ if ($row['questionType'] == 'tf')
 		echo htmlentities($row['answer'.$i]);
 		echo "</div>";
 		echo "<div style='margin-bottom: 2px;'>";
-		echo "<label><div style='display: inline-block; height: 30px; background-color: lightgreen; padding-left: 2px; padding-right: 2px;'><input type='radio' name='tfAnswer".$i."' value='t' id='tfAnswer".$i."'>".gettext("True")."</div></label>";
-		echo "<label><div style='display: inline-block; height: 30px; background-color: lightcoral; padding-left: 2px; padding-right: 2px;'><input type='radio' name='tfAnswer".$i."' value='f' id='tfAnswer".$i."'>".gettext("False")."</div></label>";
+		echo "<label><div id='tfDiv' style='background-color: lightgreen'><input type='radio' name='tfAnswer".$i."' value='t' id='tfAnswer".$i."'>".gettext("True")."</div></label>";
+		echo "<label><div id='tfDiv' style='background-color: lightcoral'><input type='radio' name='tfAnswer".$i."' value='f' id='tfAnswer".$i."'>".gettext("False")."</div></label>";
 		echo "</div>";
 		echo "</div>";
 	}

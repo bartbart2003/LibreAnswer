@@ -1,4 +1,4 @@
-# **WARNING: THIS PROJECT IS IN BETA! EVERYTING CAN BE ADDED, CHANGED OR REMOVED WITHOUT NOTICE! **
+# **WARNING: THIS PROJECT IS IN BETA! EVERYTING CAN BE ADDED, CHANGED OR REMOVED WITHOUT NOTICE!**
 # LibreAnswer
 ## Official server
 You can play LibreAnswer on the official server at http://ans.bartbart.pl.
@@ -8,6 +8,7 @@ You can create question packs and then let people play them.
 ## Features
 ### General:
 - question packs support (3 different types, described later)
+- two types of questions - ABCD and true/false
 - admin panel
 - test making
 - responsive design

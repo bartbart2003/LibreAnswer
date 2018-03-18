@@ -26,3 +26,10 @@ v0.3:
  - update question packs to reflect changes in AQF format
  - new question pack: "Różne" ("Various") by bartbart2003
  - improve code
+
+v0.3.1:
+ - fix packlist.sql
+ - update README
+ - update link Creators->Wiki
+ - update "Różne" question pack
+ - some small UI changes
