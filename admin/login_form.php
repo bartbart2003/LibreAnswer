@@ -13,7 +13,7 @@ require_once 'lang.php';
 <body>
 <div style='text-align: center; font-size: 20px; font-weight: bold;'><?php echo gettext('LibreAnswer Admin - Login Page') ?></div>
 <form method='post' action='login.php' style='text-align: center'>
-<?php echo gettext('Password:') ?> <input type='password' name='password'><br>
+<?php echo gettext('Password:') ?> <input type='password' name='password' id='textInput'><br>
 <input type='submit' value="<?php echo gettext('Login') ?>" id='okButton' style='padding: 8px;'>
 </form>
 </body>

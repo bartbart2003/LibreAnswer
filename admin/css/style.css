@@ -19,3 +19,15 @@ body {
 	transition-duration: 0.3s;
 	background-color: gray;
 }
+
+#textInput {
+	border: 2px solid black;
+	background-color: white;
+	margin-bottom: 5px;
+	padding: 4px;
+}
+
+#textInput:focus {
+	transition-duration: 0.2s;
+	box-shadow: 0 0 14px 1px gray;
+}

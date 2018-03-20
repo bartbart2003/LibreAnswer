@@ -33,3 +33,10 @@ v0.3.1:
  - update link Creators->Wiki
  - update "Różne" question pack
  - some small UI changes
+
+v0.4:
+ - improve import function in admin panel
+ - improve admin panel UI
+ - update "Różne" question pack
+ - change font url
+ - cleanup code

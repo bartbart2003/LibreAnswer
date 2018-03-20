@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php
 session_start();
-isset($_SESSION['gameStarted']) or die ("Error: Game not started!<br><a href='index.php'>Return</a>");
+isset($_SESSION['gameStarted']) or die("Error: Game not started!<br><a href='index.php'>Return</a>");
 $questionUserAnswer = '';
 if ($_SESSION['packType'] == 'test')
 { 

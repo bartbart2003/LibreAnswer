@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Lato');
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700&subset=latin-ext');
 body {
 	font-family: 'Lato', sans-serif;
 }
@@ -132,6 +132,21 @@ input[type='radio'] {
 	box-shadow: 0 0 10px blue;
 }
 
+#tfDiv {
+	display: inline-block;
+	height: 30px;
+	padding-left: 3px;
+	padding-right: 3px;
+	margin-left: 1px;
+	margin-right: 1px;
+	border-radius: 5px;
+}
+
+#tfDiv:hover {
+	transition-duration: 0.5s;
+	box-shadow: 0 0 12px 4px gray;
+}
+
 #socialDiv {
 	display: inline-block;
 	background-color: lightsteelblue;
@@ -186,19 +201,4 @@ input[type='radio'] {
 #usernameInput:focus {
 	transition-duration: 0.2s;
 	box-shadow: 0 0 14px 1px blue;
-}
-
-#tfDiv {
-	display: inline-block;
-	height: 30px;
-	padding-left: 3px;
-	padding-right: 3px;
-	margin-left: 1px;
-	margin-right: 1px;
-	border-radius: 5px;
-}
-
-#tfDiv:hover {
-	transition-duration: 0.5s;
-	box-shadow: 0 0 12px 4px gray;
 }

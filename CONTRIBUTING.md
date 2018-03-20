@@ -6,6 +6,7 @@ Remember to read the **LibreAnswer contributing guidelines** section in this fil
 ### I can't program, but I still want to help
 You can:
  - create question packs. You can read how to do it on the wiki on GitHub.
+ - review question packs submitted by users - comment on pull requests at https://github.com/bartbart2003/libreanswer-packs/pulls.
  - help translating LibreAnswer, for example by adding support for your native language or improving existing translations. I recommend using the POEdit tool.
  - search for bugs and report them using the "Issues" tab on GitHub.
  - help documenting this project.

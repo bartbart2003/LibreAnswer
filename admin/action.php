@@ -28,7 +28,7 @@ if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'])
 	}
 	if ($_POST['action'] == 'importPack')
 	{
-		if (file_exists('import/'.$_POST['packFilename']))
+		if (isset ($_POST['packFilename']) && file_exists('import/'.$_POST['packFilename']))
 		{
 			$quePackManager = new questionPacksManager();
 			$quePackManager->importQuestionPack($_POST['packFilename']);

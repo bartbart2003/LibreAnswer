@@ -5,7 +5,7 @@ session_start();
 require_once 'lang.php';
 // Main
 require_once 'private/main.php';
-isset($_SESSION['gameStarted']) or die ("Error: Game not started!<br><a href='index.php'>Return</a>");
+isset($_SESSION['gameStarted']) or die("Error: Game not started!<br><a href='index.php'>Return</a>");
 ?>
 <html>
 <head>

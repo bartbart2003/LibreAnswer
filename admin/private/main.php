@@ -61,16 +61,6 @@ class questionsManager
 }
 class userAnswersManager
 {
-	
-	public function insertUserAnswer($userUsername, $userAnswers, $packname)
-	{
-		$dbConnector = new databaseConnector();
-		$dbConnector->connectToDatabase();
-		$query = $dbConnector->conn->prepare("INSERT INTO answers_".$packname." (username, userAnswers) VALUES (?,?)");
-		$query->bind_param('ss', $userUsername, $userAnswers);
-		$results = $query->execute();
-	}
-	
 	public function getUsersAnswers($packname)
 	{
 		$dbConnector = new databaseConnector();
@@ -124,38 +114,44 @@ class questionPacksManager
 		$csvImportFile = file('import/'.$packFilename);
 		$i = 0;
 		$packImport_packname = '';
+		$insertQuery = '';
 		foreach($csvImportFile as $line)
 		{
-			if (substr($line, 0, 1) == '#')
+			if ($line !== '' && $line !== "\n")
 			{
-				// IF: Comment
-			}
-			else
-			{
-				// IF: Not comment
-				if ($i == 0)
+				// IF : Line not empty
+				if (substr($line, 0, 1) == '#')
 				{
-					$packImport_packname = str_getcsv($line)[0];
-					$query = $dbConnector->conn->prepare("INSERT INTO packlist (packname, packDisplayName, packType, packAuthor, packDescription, packLanguage, license, attributes, difficulty) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);");
-					$query->bind_param('sssssssss', $packImport_packname, str_getcsv($line)[1], str_getcsv($line)[2], str_getcsv($line)[3], str_getcsv($line)[4], str_getcsv($line)[5], str_getcsv($line)[6], str_getcsv($line)[7], str_getcsv($line)[8]);
-					$results = $query->execute();
-					$query = "CREATE TABLE IF NOT EXISTS pack_".$packImport_packname." (`questionID` int(11) NOT NULL AUTO_INCREMENT, `question` text CHARACTER SET utf8 NOT NULL, `hint` text CHARACTER SET utf8 NOT NULL, `answer1` text CHARACTER SET utf8 NOT NULL, `answer2` text CHARACTER SET utf8 NOT NULL, `answer3` text CHARACTER SET utf8 NOT NULL, `answer4` text CHARACTER SET utf8 NOT NULL, `correctAnswer` text CHARACTER SET utf8 NOT NULL, `questionType` text CHARACTER SET utf8 NOT NULL, `questionExtra` text CHARACTER SET utf8 NOT NULL, PRIMARY KEY (`questionID`));";
-					$results = $dbConnector->conn->query($query);
-					if (str_getcsv($line)[2] == 'test')
-					{
-						$query = "CREATE TABLE IF NOT EXISTS answers_".$packImport_packname." (`answerID` int(11) NOT NULL AUTO_INCREMENT, `username` text CHARACTER SET utf8 NOT NULL, `userAnswers` text CHARACTER SET utf8 NOT NULL, PRIMARY KEY (`answerID`));";
-						$results = $dbConnector->conn->query($query);
-					}
+					// IF: Comment
 				}
 				else
 				{
-					$query1 = $dbConnector->conn->prepare("INSERT INTO pack_".$packImport_packname." (question, hint, answer1, answer2, answer3, answer4, correctAnswer, questionType, questionExtra) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);");
-					$query1->bind_param('sssssssss', str_getcsv($line)[0], str_getcsv($line)[1], str_getcsv($line)[2], str_getcsv($line)[3], str_getcsv($line)[4], str_getcsv($line)[5], str_getcsv($line)[6], str_getcsv($line)[7], str_getcsv($line)[8]);
-					$results = $query1->execute();
+					// IF: Not comment
+					if ($i == 0)
+					{
+						$packImport_packname = str_getcsv($line)[0];
+						$query = $dbConnector->conn->prepare("INSERT INTO packlist (packname, packDisplayName, packType, packAuthor, packDescription, packLanguage, license, attributes, difficulty) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);");
+						$query->bind_param('sssssssss', $packImport_packname, str_getcsv($line)[1], str_getcsv($line)[2], str_getcsv($line)[3], str_getcsv($line)[4], str_getcsv($line)[5], str_getcsv($line)[6], str_getcsv($line)[7], str_getcsv($line)[8]);
+						$results = $query->execute();
+						$query = "CREATE TABLE IF NOT EXISTS pack_".$packImport_packname." (`questionID` int(11) NOT NULL AUTO_INCREMENT, `question` text CHARACTER SET utf8 NOT NULL, `hint` text CHARACTER SET utf8 NOT NULL, `answer1` text CHARACTER SET utf8 NOT NULL, `answer2` text CHARACTER SET utf8 NOT NULL, `answer3` text CHARACTER SET utf8 NOT NULL, `answer4` text CHARACTER SET utf8 NOT NULL, `correctAnswer` text CHARACTER SET utf8 NOT NULL, `questionType` text CHARACTER SET utf8 NOT NULL, `questionExtra` text CHARACTER SET utf8 NOT NULL, PRIMARY KEY (`questionID`));";
+						$results = $dbConnector->conn->query($query);
+						if (str_getcsv($line)[2] == 'test')
+						{
+							$query = "CREATE TABLE IF NOT EXISTS answers_".$packImport_packname." (`answerID` int(11) NOT NULL AUTO_INCREMENT, `username` text CHARACTER SET utf8 NOT NULL, `userAnswers` text CHARACTER SET utf8 NOT NULL, PRIMARY KEY (`answerID`));";
+							$results = $dbConnector->conn->query($query);
+						}
+						$insertQuery = $insertQuery."INSERT INTO pack_".$packImport_packname." (question, hint, answer1, answer2, answer3, answer4, correctAnswer, questionType, questionExtra) VALUES";
+					}
+					else
+					{
+						$insertQuery = $insertQuery." (\"".str_getcsv($line)[0]."\", \"".str_getcsv($line)[1]."\", \"".str_getcsv($line)[2]."\", \"".str_getcsv($line)[3]."\", \"".str_getcsv($line)[4]."\", \"".str_getcsv($line)[5]."\", \"".str_getcsv($line)[6]."\", \"".str_getcsv($line)[7]."\", \"".str_getcsv($line)[8]."\"),";
+					}
+					$i++;
 				}
-				$i++;
 			}
 		}
+		$insertQuery = substr($insertQuery, 0, -1).";";
+		$dbConnector->conn->query($insertQuery);
 	}
 	
 	public function clearUserAnswers($packname)
