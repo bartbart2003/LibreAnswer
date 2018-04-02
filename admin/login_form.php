@@ -9,6 +9,7 @@ require_once 'lang.php';
 <link rel='stylesheet' type='text/css' href='css/style.css'>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
 <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+<?php include 'stats.php'; ?>
 </head>
 <body>
 <div style='text-align: center; font-size: 20px; font-weight: bold;'><?php echo gettext('LibreAnswer Admin - Login Page') ?></div>

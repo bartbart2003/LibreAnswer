@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <?php
 session_start();
 // Main
@@ -5,6 +6,14 @@ require_once 'private/main.php';
 // Translations
 require_once 'lang.php';
 isset($_SESSION['gameStarted']) or die("Error: Game not started!<br><a href='index.php'>Return</a>");
+?>
+<html>
+<head>
+<title>LibreAnswer</title>
+<?php include 'stats.php'; ?>
+</head>
+<body>
+<?php
 $correctAnswer = '';
 $queManager = new questionsManager();
 $queCount = $queManager->getQuestionsCount($_SESSION['packname']);
@@ -224,3 +233,5 @@ else if ($_SESSION['packType'] == 'test')
 	}
 }
 ?>
+</body>
+</html>

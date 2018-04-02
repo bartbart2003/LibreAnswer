@@ -1,146 +1,154 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2018-03-20 18:41+0100\n"
-"PO-Revision-Date: 2018-03-20 18:42+0100\n"
+"POT-Creation-Date: 2018-04-02 20:05+0200\n"
+"PO-Revision-Date: 2018-04-02 20:05+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pl_PL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.5\n"
+"X-Generator: Poedit 2.0.6\n"
 "X-Poedit-Basepath: ../../..\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: action.php:21
+#: action.php:28
 msgid "Pack deleted."
 msgstr "Paczka usunięta."
 
-#: action.php:21 action.php:25 action.php:35 action.php:39 action.php:46
-#: action.php:52 answers.php:77
+#: action.php:28 action.php:32 action.php:44 action.php:48 action.php:52
+#: action.php:57 action.php:64 action.php:70 answers.php:86
 msgid "Return to homepage"
 msgstr "Wróć do strony głównej"
 
-#: action.php:25 answers.php:75
+#: action.php:32 answers.php:84
 msgid "No packname specified!"
 msgstr "Nie podano paczki pytań!"
 
-#: action.php:35
+#: action.php:44
 msgid "Pack imported."
 msgstr "Paczka zaimportowana."
 
-#: action.php:39
+#: action.php:48
+msgid "Error: Empty packname."
+msgstr "Błąd: Pusta nazwa paczki."
+
+#: action.php:52
+msgid "Error importing pack."
+msgstr "Błąd importowania paczki"
+
+#: action.php:57
 msgid "Error: File not found."
 msgstr "Błąd: Nie znaleziono pliku."
 
-#: action.php:46
+#: action.php:64
 msgid "User answers cleared."
 msgstr "Odpowiedzi użytkowników wyczyszczone."
 
-#: action.php:52
+#: action.php:70
 msgid "Answer cleared."
 msgstr "Odpowiedź wyczyszczona."
 
-#: action.php:57 answers.php:81 panel.php:95
+#: action.php:75 answers.php:90 panel.php:80
 msgid "Not logged in!"
 msgstr "Nie jesteś zalogowany!"
 
-#: answers.php:14 panel.php:18
+#: answers.php:20 panel.php:24
 msgid "User answers"
 msgstr "Odpowiedzi użytkowników"
 
-#: answers.php:30
+#: answers.php:36
 msgid "Answers key:"
 msgstr "Klucz odpowiedzi:"
 
-#: answers.php:68
+#: answers.php:74
 msgid "Correct answers:"
 msgstr "Poprawne odpowiedzi:"
 
-#: login.php:10
+#: answers.php:79
+msgid "Clear all user answers"
+msgstr "Wyczyść wszystkie odpowiedzi użytkowników"
+
+#: login.php:17
 msgid "Already logged in!"
 msgstr "Jesteś już zalogowany!"
 
-#: login.php:19
+#: login.php:26
 msgid "Logged in, redirecting..."
 msgstr "Zalogowano, przekierowywanie..."
 
-#: login.php:24
+#: login.php:31
 msgid "Wrong password!"
 msgstr "Niepoprawne hasło!"
 
-#: login.php:25 logout.php:8 panel.php:96
+#: login.php:32 logout.php:15 panel.php:81
 msgid "Login form"
 msgstr "Formularz logowania"
 
-#: login_form.php:8 login_form.php:14
+#: login_form.php:8 login_form.php:15
 msgid "LibreAnswer Admin - Login Page"
 msgstr "LibreAnswer Admin - Strona Logowania"
 
-#: login_form.php:16
+#: login_form.php:17
 msgid "Password:"
 msgstr "Hasło:"
 
-#: login_form.php:17
+#: login_form.php:18
 msgid "Login"
 msgstr "Zaloguj się"
 
-#: logout.php:7
+#: logout.php:14
 msgid "Logout successful!"
 msgstr "Wylogowano poprawnie!"
 
-#: panel.php:12
+#: panel.php:18
 msgid "Homepage"
 msgstr "Strona główna"
 
-#: panel.php:26
+#: panel.php:32
 msgid "Show user answers"
 msgstr "Pokaż odpowiedzi użytkowników"
 
-#: panel.php:31 panel.php:52
+#: panel.php:37
 msgid "No test question packs"
 msgstr "Brak paczek pytań typu test"
 
-#: panel.php:35 panel.php:47
-msgid "Clear user answers"
-msgstr "Wyczyść odpowiedzi użytkowników"
-
-#: panel.php:36 panel.php:57
-msgid "BE CAREFUL!"
-msgstr "BĄDŹ OSTROŻNY!"
-
-#: panel.php:56
+#: panel.php:41
 msgid "Pack deletor"
 msgstr "Usuwanie paczek"
 
-#: panel.php:67
+#: panel.php:42
+msgid "BE CAREFUL!"
+msgstr "BĄDŹ OSTROŻNY!"
+
+#: panel.php:52
 msgid "Delete user answers"
 msgstr "Usuń odpowiedzi użytkowników"
 
-#: panel.php:69
+#: panel.php:54
 msgid "Delete pack"
 msgstr "Usuń paczkę"
 
-#: panel.php:74
+#: panel.php:59
 msgid "No question packs"
 msgstr "Brak paczek pytań"
 
-#: panel.php:78
+#: panel.php:63
 msgid "Pack import"
 msgstr "Importowanie paczek"
 
-#: panel.php:79
+#: panel.php:64
 msgid "Files should be placed in the import/ directory"
 msgstr "Pliki powinny zostać umieszczone w folderze import"
 
-#: panel.php:88
+#: panel.php:73
 msgid "Import pack"
 msgstr "Importuj paczkę"
 
-#: panel.php:91
+#: panel.php:76
 msgid "Logout"
 msgstr "Wyloguj się"
 

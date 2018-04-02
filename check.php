@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <?php
 session_start();
 // Main
@@ -13,6 +14,7 @@ isset($_SESSION['gameStarted']) or die("Error: Game not started!<br><a href='ind
 <link rel='stylesheet' type='text/css' href='css/style.css'>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<?php include 'stats.php'; ?>
 </head>
 <body>
 <?php

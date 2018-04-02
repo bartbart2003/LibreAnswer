@@ -1,12 +1,21 @@
+<!DOCTYPE html>
 <?php
 // Main
 require_once 'private/main.php';
+(isset($_POST['packname']) && $_POST['packname'] != '') or die("<br>Error: No question pack specified! <a href='selectpack.php'>Return</a>");
 // Ensure that we're starting a new session
 session_start();
 session_destroy();
 session_start();
+?>
+<html>
+<head>
+<title>LibreAnswer</title>
+<?php include 'stats.php'; ?>
+</head>
+<body>
+<?php
 echo 'Starting game...';
-(isset($_POST['packname']) && $_POST['packname'] != '') or die("<br>Error: No question pack specified! <a href='selectpack.php'>Return</a>");
 $quePackManager = new questionPacksManager();
 $results = $quePackManager->getQuestionPacks();
 $packnameForSession = '';
@@ -34,6 +43,7 @@ $_SESSION['username'] = $_POST['username'];
 $_SESSION['packname'] = $packnameForSession;
 $_SESSION['packType'] = $packType;
 $_SESSION['lifelines'] = '';
+$_SESSION['backgroundsEnabled'] = false;
 $_SESSION['gameStarted'] = 'true';
 $_SESSION['questionNumber'] = '1';
 $_SESSION['formAnswer'] = '1';
@@ -59,6 +69,12 @@ if (strpos($packAttributes,'f') !== false)
 {
 	$_SESSION['lifelines'] = $_SESSION['lifelines'].'f';
 }
+if (strpos($packAttributes,'b') !== false)
+{
+	$_SESSION['backgroundsEnabled'] = true;
+}
 
 echo "<script>window.location.href = 'question.php';</script>";
 ?>
+</body>
+</html>

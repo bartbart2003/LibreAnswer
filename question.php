@@ -16,6 +16,15 @@ if ($_SESSION['packType'] == 'test')
 <link rel='stylesheet' type='text/css' href='css/style.css'>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
 <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+<?php
+if ($_SESSION['backgroundsEnabled'] == true)
+{
+	echo "<style>";
+	include 'randombg.php';
+	echo "</style>";
+}
+?>
+<?php include 'stats.php'; ?>
 </head>
 <body>
 <?php
@@ -28,13 +37,13 @@ $queManager = new questionsManager();
 $row = $queManager->getQuestion($_SESSION['packname'], $_SESSION['questionNumber']);
 $questionsCount = $queManager->getQuestionsCount($_SESSION['packname']);
 ?>
-<div style='background-color: #C1B596; text-align: center; font-size: 20px; border-radius: 10px;'><?php echo gettext('LibreAnswer - Question') ?> <?php echo $_SESSION['questionNumber'] ?> <?php echo gettext('of') ?> <?php echo $questionsCount ?></div>
+<div style='background-color: #C1B596; text-align: center; font-size: 21px; border-radius: 10px;'><?php echo gettext('LibreAnswer - Question') ?> <?php echo $_SESSION['questionNumber'] ?> <?php echo gettext('of') ?> <?php echo $questionsCount ?></div>
 <!-- Lifelines -->
-<div style='background-color: aquamarine; text-align: center; font-size: 20px; border-radius: 10px; width: 240px; margin: 0 auto; padding-left: 15px; padding-right: 15px;'><?php if (strpos($_SESSION['lifelines'],'h') !== false) { echo "<button onclick='getHint();' id='lifelineHintButton'>".gettext('HINT')."</button>"; } ?><?php if (strpos($_SESSION['lifelines'],'f') !== false && $row['questionType'] != 'tf') { echo "<button onclick='getFF();' id='lifelineFFButton'>".gettext('50/50')."</button>"; } ?></div>
+<div style='background-color: aquamarine; text-align: center; font-size: 20px; border-radius: 10px; width: 240px; margin: 0 auto; padding-left: 15px; padding-right: 15px; margin-bottom: 5px;'><?php if (strpos($_SESSION['lifelines'],'h') !== false) { echo "<button onclick='getHint();' id='lifelineHintButton'>".gettext('HINT')."</button>"; } ?><?php if (strpos($_SESSION['lifelines'],'f') !== false && $row['questionType'] != 'tf') { echo "<button onclick='getFF();' id='lifelineFFButton'>".gettext('50/50')."</button>"; } ?></div>
 <!-- Question text -->
-<div style='text-align: center; font-size: 20px; font-weight: bold;'><?php echo htmlentities($row['question']) ?></div>
+<div style='text-align: center; font-size: 21px; font-weight: bold;'><?php echo htmlentities($row['question']) ?></div>
 <!-- Hint div -->
-<div id='hintDiv' style='visibility: hidden; text-align: center; background-color: lime; border-radius: 10px;'></div>
+<div id='hintDiv' style='visibility: hidden; text-align: center; background-color: lime; border-radius: 10px; font-size: 18px;'></div>
 <form method='get' style='text-align: center;' id='answersForm'>
 <?php
 // ABCD answers
@@ -58,7 +67,7 @@ if ($row['questionType'] == 'abcd')
 // True/false answers
 if ($row['questionType'] == 'tf')
 {
-	echo "<div style='display: inline-block; text-align: center; width: 400px;'>";
+	echo "<div style='display: inline-block; text-align: center; width: 400px; max-width: 90vw;'>";
 	for ($i = 1; $i<5; $i++)
 	{
 		echo "<div style='margin-bottom: 5px; border: 1px solid black;'>";

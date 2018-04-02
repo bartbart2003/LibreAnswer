@@ -40,3 +40,13 @@ v0.4:
  - update "Różne" question pack
  - change font url
  - cleanup code
+
+v0.5
+ - update "Różne" question pack
+ - Fix true/false questions sizing on small screens
+ - check for empty packname when importing question pack
+ - new pack attribute: "b" - adds a random background (from the backgrounds/ folder of the game) to the gameplay
+ - add backgrounds in backgrounds/ folder (from Subtle Patterns)
+ - move some css to index.php
+ - add HTML structure to more pages
+ - add stats support (primarily intended for Matomo, may work with other tools)

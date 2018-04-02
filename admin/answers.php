@@ -1,11 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>LibreAnswer Admin</title>
+<link rel='stylesheet' type='text/css' href='css/style.css'><meta name='viewport' content='width=device-width, initial-scale=1'>
+<?php include 'stats.php'; ?>
+</head>
+<body>
 <?php
 session_start();
-header('Content-type: text/html; charset=utf-8');
 // Translations
 require_once 'lang.php';
 // Main
 require_once 'private/main.php';
-echo "<html><head><title>LibreAnswer Admin</title><link rel='stylesheet' type='text/css' href='css/style.css'><meta name='viewport' content='width=device-width, initial-scale=1'></head><body>";
 if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'])
 {
 	echo "<div style='text-align: center; font-size: 20px; font-weight: bold;'>LibreAnswer Admin</div>";
@@ -69,6 +75,9 @@ if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'])
 			echo " <form action='action.php' method='post' style='display: inline'><input type='hidden' name='action' value='clearSingleAnswer'><input type='hidden' name='packname' value='".$_POST['packname']."'><input type='hidden' name='answerID' value='".$row['answerID']."'><input type='submit' style='background-color: lightcoral; border-radius: 20px; border: 0px; cursor: pointer;' value='X'></form>";
 			echo '</div>';
 		}
+		echo "<div style='text-align: center; font-size: 17px; background-color: gainsboro;'>";
+		echo "<form action='action.php' method='post' style='display: inline'><input type='hidden' name='action' value='clearUserAnswers'><input type='hidden' name='packname' value='".$_POST['packname']."'><input type='submit' style='background-color: gainsboro; border: 1px solid black; cursor: pointer; font-size: 15px; color: red;' value='".gettext("Clear all user answers")."'></form>";
+		echo '</div>';
 	}
 	else
 	{
@@ -80,5 +89,6 @@ else
 {
 	echo gettext('Not logged in!');
 }
-echo "</body></html>";
 ?>
+</body>
+</html>

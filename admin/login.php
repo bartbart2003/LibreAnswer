@@ -1,6 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>LibreAnswer Admin</title>
+<link rel='stylesheet' type='text/css' href='css/style.css'><meta name='viewport' content='width=device-width, initial-scale=1'>
+<?php include 'stats.php'; ?>
+</head>
+<body>
 <?php
 session_start();
-header('Content-type: text/html; charset=utf-8');
 // Translations
 require_once 'lang.php';
 // Main
@@ -26,3 +33,5 @@ else
 	}
 }
 ?>
+</body>
+</html>

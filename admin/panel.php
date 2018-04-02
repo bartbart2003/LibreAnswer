@@ -1,11 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>LibreAnswer Admin</title>
+<link rel='stylesheet' type='text/css' href='css/style.css'><meta name='viewport' content='width=device-width, initial-scale=1'>
+<?php include 'stats.php'; ?>
+</head>
+<body>
 <?php
 session_start();
-header('Content-type: text/html; charset=utf-8');
 // Translations
 require_once 'lang.php';
 // Main
 require_once 'private/main.php';
-echo "<html><head><title>LibreAnswer Admin</title><link rel='stylesheet' type='text/css' href='css/style.css'><meta name='viewport' content='width=device-width, initial-scale=1'></head><body>";
 if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'])
 {
 	echo "<div style='text-align: center; font-size: 20px; font-weight: bold;'>LibreAnswer Admin</div>";
@@ -24,27 +30,6 @@ if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'])
 			echo "<label><input type='radio' name='packname' value='".$row['packname']."'>".$row['packDisplayName']." (".$row['packname'].")</label><br>";
 		}
 		echo "<input type='submit' value='".gettext('Show user answers')."' id='okButton'>";
-		echo '</form>';
-	}
-	else
-	{
-		echo "<div style='text-align: center; font-weight: bold; font-size: 16px; padding: 10px;'>".gettext("No test question packs")."</div>";
-	}
-	echo '</div>';
-	//SECTION: clear user answers
-	echo "<div style='background-color: gainsboro; padding-top: 5px; padding-bottom: 5px; margin-top: 5px;'><div style='text-align: center; font-size: 17px; font-weight: bold;'>".gettext('Clear user answers')."</div>";
-	echo "<div style='text-align: center; font-size: 15px; font-weight: bold; color: red;'>".gettext('BE CAREFUL!')."</div>";
-	$query = "SELECT * FROM packlist WHERE packType='test'";
-	$results = $dbConnector->conn->query($query);
-	if ($results->num_rows > 0)
-	{
-		echo "<form action='action.php' method='post' style='text-align: center;'>";
-		while ($row = $results->fetch_assoc())
-		{
-			echo "<label><input type='radio' name='packname' value='".$row['packname']."'>".$row['packDisplayName']." (".$row['packname'].")</label><br>";
-		}
-		echo "<input type='hidden' name='action' value='clearUserAnswers'>";
-		echo "<input type='submit' value='".gettext('Clear user answers')."' id='okButton'>";
 		echo '</form>';
 	}
 	else
@@ -95,5 +80,6 @@ else
 	echo gettext('Not logged in!').'<br>';
 	echo "<a href='login_form.php'>".gettext('Login form').'</a>';
 }
-echo "</body></html>";
 ?>
+</body>
+</html>

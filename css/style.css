@@ -13,7 +13,8 @@ input[type='radio'] {
 	background-color: aquamarine;
 	border: 1px solid black;
 	border-radius: 10px;
-	padding: 12px;
+	padding: 14px;
+	font-size: 14px;
 	text-align: center;
 	display: inline-block;
 	cursor: pointer;
@@ -67,29 +68,11 @@ input[type='radio'] {
 	background-color: lightblue;
 }
 
-#playLink {
-	text-decoration: none;
-	color: black;
-	background-color: aquamarine;
-	font-weight: bold;
-	font-size: 16px;
-	border: 1px solid black;
-	border-radius: 16px;
-	padding: 25px 21px 25px 21px;
-	text-align: center;
-	display: inline-block;
-	cursor: pointer;
-}
-#playLink:hover {
-	transition-duration: 0.5s;
-	background-color: lightgreen;
-	box-shadow: 0 0 10px 4px lime;
-}
-
 #lifelineHintButton {
 	padding-left: 10px;
 	padding-right: 10px;
 	height: 38px;
+	width: 80px;
 	border: 1px solid black;
 	background-color: #ffff66;
 	border-radius: 10px;
@@ -97,6 +80,8 @@ input[type='radio'] {
 }
 
 #lifelineHintButton:hover {
+	height: 45px;
+	width: 90px;
 	transition-duration: 0.5s;
 	background-color: orange;
 	box-shadow: 0 0 15px orange;
@@ -112,6 +97,8 @@ input[type='radio'] {
 }
 
 #lifelineFFButton:hover {
+	height: 45px;
+	width: 65px;
 	transition-duration: 0.5s;
 	background-color: cyan;
 	box-shadow: 0 0 15px cyan;
@@ -120,7 +107,7 @@ input[type='radio'] {
 #questionTab {
 	border-radius: 10px;
 	background-color: lightsteelblue;
-	padding: 6px; 
+	padding: 8px;
 	display: inline-block;
 	border: 1px solid black;
 	margin: 1px;
@@ -145,40 +132,6 @@ input[type='radio'] {
 #tfDiv:hover {
 	transition-duration: 0.5s;
 	box-shadow: 0 0 12px 4px gray;
-}
-
-#socialDiv {
-	display: inline-block;
-	background-color: lightsteelblue;
-	border-radius: 10px 10px 0px 0px;
-	text-align: left;
-	font-size: 25px;
-	font-weight: bold;
-	padding-top: 5px;
-	width: 24vw;
-	min-width: 255px;
-}
-
-#titleDiv {
-	display: inline-block;
-	background-color: gray;
-	border-radius: 0px 0px 10px 10px;
-	text-align: center;
-	font-size: 40px;
-	font-weight: bold;
-	width: 24vw;
-	min-width: 255px;
-}
-
-#homepageTextDiv {
-	font-size: 20px;
-	text-align: center;
-	background-color: lightblue;
-	font-weight: bold;
-	display: inline-block;
-	margin: auto;
-	width: 20vw;
-	min-width: 180px;
 }
 
 #packTab {

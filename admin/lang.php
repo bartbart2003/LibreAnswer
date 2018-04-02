@@ -11,7 +11,7 @@ switch(substr($lang, 0, 2))
 	case 'pl':
 		putenv('LANG=pl_PL.UTF-8');
 		setlocale(LC_ALL, 'pl_PL.UTF-8');
-		$langShort= 'pl';
+		$langShort = 'pl';
 		break;
 	default:
 		break;
