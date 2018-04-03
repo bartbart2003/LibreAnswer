@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +10,6 @@
 </head>
 <body>
 <?php
-session_start();
 // Translations
 require_once 'lang.php';
 // Main

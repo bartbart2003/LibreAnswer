@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <?php
 session_start();
 // Main
@@ -7,6 +6,7 @@ require_once 'private/main.php';
 require_once 'lang.php';
 isset($_SESSION['gameStarted']) or die("Error: Game not started!<br><a href='index.php'>Return</a>");
 ?>
+<!DOCTYPE html>
 <html>
 <head>
 <title>LibreAnswer</title>

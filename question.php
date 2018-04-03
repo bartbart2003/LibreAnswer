@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <?php
 session_start();
 isset($_SESSION['gameStarted']) or die("Error: Game not started!<br><a href='index.php'>Return</a>");
@@ -8,6 +7,7 @@ if ($_SESSION['packType'] == 'test')
 	$questionUserAnswer = $_SESSION['userAnswers'][$_SESSION['questionNumber']];
 }
 ?>
+<!DOCTYPE html>
 <html>
 <head>
 <title>LibreAnswer</title>

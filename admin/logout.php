@@ -1,3 +1,7 @@
+<?php
+session_start();
+session_destroy();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,8 +11,6 @@
 </head>
 <body>
 <?php
-session_start();
-session_destroy();
 // Translations
 require_once 'lang.php';
 echo gettext('Logout successful!').'<br>';

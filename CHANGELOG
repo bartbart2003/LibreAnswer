@@ -41,7 +41,7 @@ v0.4:
  - change font url
  - cleanup code
 
-v0.5
+v0.5:
  - update "Różne" question pack
  - Fix true/false questions sizing on small screens
  - check for empty packname when importing question pack
@@ -50,3 +50,7 @@ v0.5
  - move some css to index.php
  - add HTML structure to more pages
  - add stats support (primarily intended for Matomo, may work with other tools)
+
+v0.5.1
+ - add a missing ":" in CHANGELOG
+ - start session before DOCTYPE

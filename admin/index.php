@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +10,6 @@
 </head>
 <body>
 <?php
-session_start();
 if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'])
 {
 	echo "<script>window.location.href = 'panel.php'</script>";

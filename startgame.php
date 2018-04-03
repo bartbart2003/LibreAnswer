@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <?php
 // Main
 require_once 'private/main.php';
@@ -8,6 +7,7 @@ session_start();
 session_destroy();
 session_start();
 ?>
+<!DOCTYPE html>
 <html>
 <head>
 <title>LibreAnswer</title>
