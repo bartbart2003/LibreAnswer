@@ -2,10 +2,10 @@
 class databaseConnector
 {
 	# SERVER CONFIG #
-	private $servername = 'servername';
-	private $username = 'username';
-	private $password = 'password';
-	private $database = 'database';
+	private $servername = '';
+	private $username = '';
+	private $password = '';
+	private $database = '';
 	# END OF CONFIG #
 	
 	# Connection variable

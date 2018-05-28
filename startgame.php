@@ -19,21 +19,15 @@ echo 'Starting game...';
 $quePackManager = new questionPacksManager();
 $results = $quePackManager->getQuestionPacks();
 $packnameForSession = '';
-$packType = 'standard';
 $packAttributes = '';
 while ($row = $results->fetch_assoc())
 {
 	if ($row['packname'] == $_POST['packname'])
 	{
 		$packnameForSession = $_POST['packname'];
-		$packType = $row['packType'];
-		$packAttributes = $row['attributes'];
+		$packAttributes = $row['packAttributes'];
 		break;
 	}
-}
-if ($row['packType'] == 'test')
-{
-	(isset($_POST['username']) && $_POST['username'] != '') or die("<br>Error: No username specified! <a href='selectpack.php'>Return</a>");
 }
 if ($packnameForSession == '')
 {
@@ -41,24 +35,12 @@ if ($packnameForSession == '')
 }
 $_SESSION['username'] = $_POST['username'];
 $_SESSION['packname'] = $packnameForSession;
-$_SESSION['packType'] = $packType;
+$_SESSION['quizMode'] = false;
 $_SESSION['lifelines'] = '';
 $_SESSION['backgroundsEnabled'] = false;
-$_SESSION['gameStarted'] = 'true';
+$_SESSION['gameStarted'] = true;
 $_SESSION['questionNumber'] = '1';
 $_SESSION['formAnswer'] = '1';
-
-// Type-specific things
-if ($packType == 'test')
-{
-	$queManager = new questionsManager(); 
-	$_SESSION['userAnswers'] = str_repeat('0', $queManager->getQuestionsCount($_SESSION['packname']) + 1);
-	$_SESSION['answersSaved'] = false;
-}
-else if ($packType == 'quiz')
-{
-	$_SESSION['correctUserAnswers'] = 0;
-}
 
 // Attributes
 if (strpos($packAttributes,'h') !== false)
@@ -72,6 +54,11 @@ if (strpos($packAttributes,'f') !== false)
 if (strpos($packAttributes,'b') !== false)
 {
 	$_SESSION['backgroundsEnabled'] = true;
+}
+if (strpos($packAttributes,'q') !== false)
+{
+	$_SESSION['correctUserAnswers'] = 0;
+	$_SESSION['quizMode'] = true;
 }
 
 echo "<script>window.location.href = 'question.php';</script>";

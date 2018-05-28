@@ -2,11 +2,11 @@
 class databaseConnector
 {
 	# SERVER CONFIG #
-	private $servername = 'servername';
-	private $username = 'username';
-	private $password = 'password';
-	private $database = 'database';
-	private $adminPassword = 'adminpassword';
+	private $servername = '';
+	private $username = '';
+	private $password = '';
+	private $database = '';
+	private $adminPassword = '';
 	# END OF CONFIG #
 	
 	# Connection variable
@@ -91,7 +91,7 @@ class questionPacksManager
 		return $results;
 	}
 	
-	public function deleteQuestionPack($packname, $deleteUserAnswers)
+	public function deleteQuestionPack($packname)
 	{
 		$dbConnector = new databaseConnector();
 		$dbConnector->connectToDatabase();
@@ -100,11 +100,6 @@ class questionPacksManager
 		$results = $query->execute();
 		$query = "DROP TABLE IF EXISTS pack_".$packname.";";
 		$results = $dbConnector->conn->query($query);
-		if ($deleteUserAnswers)
-		{
-			$query = "DROP TABLE IF EXISTS answers_".$packname.";";
-			$results = $dbConnector->conn->query($query);
-		}
 	}
 	
 	public function importQuestionPack($packFilename)
@@ -136,22 +131,17 @@ class questionPacksManager
 						}
 						else
 						{
-							$query = $dbConnector->conn->prepare("INSERT INTO packlist (packname, packDisplayName, packType, packAuthor, packDescription, packLanguage, license, attributes, difficulty) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);");
+							$query = $dbConnector->conn->prepare("INSERT INTO packlist (packname, packDisplayName, packIconType, packIcon, packAuthor, packDescription, packLanguage, packLicense, packAttributes) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);");
 							$query->bind_param('sssssssss', $packImport_packname, str_getcsv($line)[1], str_getcsv($line)[2], str_getcsv($line)[3], str_getcsv($line)[4], str_getcsv($line)[5], str_getcsv($line)[6], str_getcsv($line)[7], str_getcsv($line)[8]);
 							$results = $query->execute();
-							$query = "CREATE TABLE IF NOT EXISTS pack_".$packImport_packname." (`questionID` int(11) NOT NULL AUTO_INCREMENT, `question` text CHARACTER SET utf8 NOT NULL, `hint` text CHARACTER SET utf8 NOT NULL, `answer1` text CHARACTER SET utf8 NOT NULL, `answer2` text CHARACTER SET utf8 NOT NULL, `answer3` text CHARACTER SET utf8 NOT NULL, `answer4` text CHARACTER SET utf8 NOT NULL, `correctAnswer` text CHARACTER SET utf8 NOT NULL, `questionType` text CHARACTER SET utf8 NOT NULL, `questionExtra` text CHARACTER SET utf8 NOT NULL, PRIMARY KEY (`questionID`));";
+							$query = "CREATE TABLE IF NOT EXISTS pack_".$packImport_packname." (`questionID` int(11) NOT NULL AUTO_INCREMENT, `question` text CHARACTER SET utf8 NOT NULL, `multimediaType` text CHARACTER SET utf8 NOT NULL, `multimediaContent` text CHARACTER SET utf8 NOT NULL, `hint` text CHARACTER SET utf8 NOT NULL, `answer1` text CHARACTER SET utf8 NOT NULL, `answer2` text CHARACTER SET utf8 NOT NULL, `answer3` text CHARACTER SET utf8 NOT NULL, `answer4` text CHARACTER SET utf8 NOT NULL, `correctAnswer` text CHARACTER SET utf8 NOT NULL, `questionType` text CHARACTER SET utf8 NOT NULL, `questionExtra` text CHARACTER SET utf8 NOT NULL, PRIMARY KEY (`questionID`));";
 							$results = $dbConnector->conn->query($query);
-							if (str_getcsv($line)[2] == 'test')
-							{
-								$query = "CREATE TABLE IF NOT EXISTS answers_".$packImport_packname." (`answerID` int(11) NOT NULL AUTO_INCREMENT, `username` text CHARACTER SET utf8 NOT NULL, `userAnswers` text CHARACTER SET utf8 NOT NULL, PRIMARY KEY (`answerID`));";
-								$results = $dbConnector->conn->query($query);
-							}
-							$insertQuery = $insertQuery."INSERT INTO pack_".$packImport_packname." (question, hint, answer1, answer2, answer3, answer4, correctAnswer, questionType, questionExtra) VALUES";
+							$insertQuery = $insertQuery."INSERT INTO pack_".$packImport_packname." (question, multimediaType, multimediaContent, hint, answer1, answer2, answer3, answer4, correctAnswer, questionType, questionExtra) VALUES";
 						}
 					}
 					else
 					{
-						$insertQuery = $insertQuery." (\"".str_getcsv($line)[0]."\", \"".str_getcsv($line)[1]."\", \"".str_getcsv($line)[2]."\", \"".str_getcsv($line)[3]."\", \"".str_getcsv($line)[4]."\", \"".str_getcsv($line)[5]."\", \"".str_getcsv($line)[6]."\", \"".str_getcsv($line)[7]."\", \"".str_getcsv($line)[8]."\"),";
+						$insertQuery = $insertQuery." (\"".str_getcsv($line)[0]."\", \"".str_getcsv($line)[1]."\", \"".str_getcsv($line)[2]."\", \"".str_getcsv($line)[3]."\", \"".str_getcsv($line)[4]."\", \"".str_getcsv($line)[5]."\", \"".str_getcsv($line)[6]."\", \"".str_getcsv($line)[7]."\", \"".str_getcsv($line)[8]."\", \"".str_getcsv($line)[9]."\", \"".str_getcsv($line)[10]."\"),";
 					}
 					$i++;
 				}

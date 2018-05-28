@@ -72,7 +72,7 @@ input[type='radio'] {
 	padding-left: 10px;
 	padding-right: 10px;
 	height: 38px;
-	width: 80px;
+	width: auto;
 	border: 1px solid black;
 	background-color: #ffff66;
 	border-radius: 10px;
@@ -81,15 +81,14 @@ input[type='radio'] {
 
 #lifelineHintButton:hover {
 	height: 45px;
-	width: 90px;
 	transition-duration: 0.5s;
 	background-color: orange;
 	box-shadow: 0 0 15px orange;
 }
 
 #lifelineFFButton {
-	width: 60px;
 	height: 38px;
+	width: auto;
 	border: 1px solid black;
 	background-color: lightblue;
 	border-radius: 10px;
@@ -98,7 +97,6 @@ input[type='radio'] {
 
 #lifelineFFButton:hover {
 	height: 45px;
-	width: 65px;
 	transition-duration: 0.5s;
 	background-color: cyan;
 	box-shadow: 0 0 15px cyan;
@@ -154,4 +152,15 @@ input[type='radio'] {
 #usernameInput:focus {
 	transition-duration: 0.2s;
 	box-shadow: 0 0 14px 1px blue;
+}
+
+#checkDiv {
+	text-align: center;
+	font-size: 20px;
+	display: inline-block;
+	width: 80vw;
+	margin: auto;
+	background-color: ivory;
+	border: 1px solid black;
+	border-width: 0px 1px 0px 1px;
 }

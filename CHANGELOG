@@ -54,3 +54,12 @@ v0.5:
 v0.5.1
  - add a missing ":" in CHANGELOG
  - start session before DOCTYPE
+
+v0.6:
+ - fix 2 critical bugs (they allowed to find out the answer before actually submitting it)
+ - rewrite a lot of code
+ - add support for FontAwesome and image icons for question packs
+ - remove "test" pack type (maybe I'll start a different project for this in the future)
+ - replace "quiz" pack type with "quiz mode" ("q" pack attribute)
+ - add debug pack
+ - add support for multimedia content in questions (yt, vid, img)

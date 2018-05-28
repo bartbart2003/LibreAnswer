@@ -20,25 +20,6 @@ if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'])
 	echo "<div style='text-align: center; font-size: 18px; font-weight: bold;'>".gettext('Homepage')."</div>";
 	$dbConnector = new databaseConnector();
 	$dbConnector->connectToDatabase();
-	//SECTION: show user answers
-	$query = "SELECT * FROM packlist WHERE packType='test'";
-	$results = $dbConnector->conn->query($query);
-	echo "<div style='background-color: gainsboro; padding-top: 5px; padding-bottom: 5px; margin-top: 5px;'><div style='text-align: center; font-size: 17px; font-weight: bold;'>".gettext('User answers')."</div>";
-	if ($results->num_rows > 0)
-	{
-		echo "<form action='answers.php' method='post' style='text-align: center;'>";
-		while ($row = $results->fetch_assoc())
-		{
-			echo "<label><input type='radio' name='packname' value='".$row['packname']."'>".$row['packDisplayName']." (".$row['packname'].")</label><br>";
-		}
-		echo "<input type='submit' value='".gettext('Show user answers')."' id='okButton'>";
-		echo '</form>';
-	}
-	else
-	{
-		echo "<div style='text-align: center; font-weight: bold; font-size: 16px; padding: 10px;'>".gettext("No test question packs")."</div>";
-	}
-	echo '</div>';
 	//SECTION: delete pack
 	echo "<div style='background-color: gainsboro; padding-top: 5px; padding-bottom: 5px; margin-top: 5px;'><div style='text-align: center; font-size: 17px; font-weight: bold;'>".gettext('Pack deletor')."</div>";
 	echo "<div style='text-align: center; font-size: 15px; font-weight: bold; color: red;'>".gettext('BE CAREFUL!')."</div>";
@@ -51,7 +32,6 @@ if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'])
 		{
 			echo "<label><input type='radio' name='packname' value='".$row['packname']."'>".$row['packDisplayName']." (".$row['packname'].")</label><br>";
 		}
-		echo "<div style='display: inline-block; margin-top: 3px;'><label><input type='checkbox' name='deleteua' value='true' checked>".gettext('Delete user answers')."</label></div><br>";
 		echo "<input type='hidden' name='action' value='deletePack'>";
 		echo "<input type='submit' value='".gettext('Delete pack')."' id='okButton'>";
 		echo '</form>';
@@ -69,7 +49,7 @@ if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'])
 	foreach($files as $file)
 	{
 		$file = substr($file, 7);
-		echo "<input type='radio' name='packFilename' value='".$file."'>".$file."<br>";
+		echo "<label><input type='radio' name='packFilename' value='".$file."'>".$file."</label><br>";
 	}
 	echo "<input type='hidden' name='action' value='importPack'>";
 	echo "<input type='submit' value='".gettext('Import pack')."' id='okButton'>";

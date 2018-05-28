@@ -1,11 +1,6 @@
 <?php
 session_start();
-isset($_SESSION['gameStarted']) or die("Error: Game not started!<br><a href='index.php'>Return</a>");
-$questionUserAnswer = '';
-if ($_SESSION['packType'] == 'test')
-{ 
-	$questionUserAnswer = $_SESSION['userAnswers'][$_SESSION['questionNumber']];
-}
+($_SESSION['gameStarted'] == true) or die("Error: Game not started!<br><a href='index.php'>Return</a>");
 ?>
 <!DOCTYPE html>
 <html>
@@ -17,7 +12,7 @@ if ($_SESSION['packType'] == 'test')
 <meta name='viewport' content='width=device-width, initial-scale=1'>
 <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
 <?php
-if ($_SESSION['backgroundsEnabled'] == true)
+if ($_SESSION['backgroundsEnabled'])
 {
 	echo "<style>";
 	include 'randombg.php';
@@ -40,22 +35,45 @@ $questionsCount = $queManager->getQuestionsCount($_SESSION['packname']);
 <div style='background-color: #C1B596; text-align: center; font-size: 21px; border-radius: 10px;'><?php echo gettext('LibreAnswer - Question') ?> <?php echo $_SESSION['questionNumber'] ?> <?php echo gettext('of') ?> <?php echo $questionsCount ?></div>
 <!-- Lifelines -->
 <div style='background-color: aquamarine; text-align: center; font-size: 20px; border-radius: 10px; width: 240px; margin: 0 auto; padding-left: 15px; padding-right: 15px; margin-bottom: 5px;'><?php if (strpos($_SESSION['lifelines'],'h') !== false) { echo "<button onclick='getHint();' id='lifelineHintButton'>".gettext('HINT')."</button>"; } ?><?php if (strpos($_SESSION['lifelines'],'f') !== false && $row['questionType'] != 'tf') { echo "<button onclick='getFF();' id='lifelineFFButton'>".gettext('50/50')."</button>"; } ?></div>
+<!-- Multimedia -->
+<?php
+// YouTube video
+if ($row['multimediaType'] == 'yt')
+{
+	echo "<div style='margin: auto; text-align: center;'>";
+	echo "<iframe width='400' height='200' src='https://www.youtube.com/embed/".$row['multimediaContent']."?rel=0' frameborder='0' allow='encrypted-media' allowfullscreen></iframe>";
+	echo "</div>";
+}
+// Image
+if ($row['multimediaType'] == 'img')
+{
+	echo "<div style='margin: auto; text-align: center;'>";
+	echo "<img height='200' src='".$row['multimediaContent']."' />";
+	echo "</div>";
+}
+// Video
+if ($row['multimediaType'] == 'vid')
+{
+	echo "<div style='margin: auto; text-align: center;'>";
+	echo "<video width='400' height='200' controls src='".$row['multimediaContent']."' style='background-color: black'></video>";
+	echo "</div>";
+}
+?>
 <!-- Question text -->
 <div style='text-align: center; font-size: 21px; font-weight: bold;'><?php echo htmlentities($row['question']) ?></div>
 <!-- Hint div -->
 <div id='hintDiv' style='visibility: hidden; text-align: center; background-color: lime; border-radius: 10px; font-size: 18px;'></div>
-<form method='get' style='text-align: center;' id='answersForm'>
+<form method='get' style='text-align: center;' id='answersForm' action='next.php'>
 <?php
+// Question number
+echo "<input type='hidden' name= 'questionNumber' value='".$_SESSION['questionNumber']."'>";
+
 // ABCD answers
 if ($row['questionType'] == 'abcd')
 {
 	for ($i = 1; $i<5; $i++)
 	{
 		echo "<label><span id='questionTab' class='answer".strtoupper(chr(96 + $i))."FormSpan'><input type='radio' name='formAnswer' value='".$i."' id='formAnswer".$i."' ";
-		if ($questionUserAnswer == $i)
-		{
-			echo 'checked';
-		}
 		echo "><b>".chr(96 + $i)."</b> ".htmlentities($row['answer'.$i])."</span></label>";
 		if ($i == 2 || $i == 4)
 		{
@@ -83,39 +101,10 @@ if ($row['questionType'] == 'tf')
 	echo "</div>";
 	echo "<br>";
 }
+
 // Submit buttons
-if ($_SESSION['packType'] == 'standard' || $_SESSION['packType'] == 'quiz')
-{
-	echo "<input type='submit' value='OK' style='margin: 6px;' id='okButton' formaction='check.php'>";
-}
-else if ($_SESSION['packType'] == 'test')
-{
-	echo "<span onclick='resetRadioButtons();' style='border: 0px; background-color: white; text-decoration: underline; cursor: pointer; color: black;'>".gettext('Clear answer')."</span><br>";
-	if ($_SESSION['questionNumber'] == 1)
-	{
-		echo "<input type='submit' value='< ".gettext('Previous question')."' formaction='prev.php' style='margin-top: 6px; padding: 5px; background-color: gainsboro;' id='okButton'>";
-	}
-	else
-	{
-		echo "<input type='submit' value='< ".gettext('Previous question')."' formaction='prev.php' style='margin-top: 6px; padding: 5px;' id='okButton'>";
-	}
-	if ($_SESSION['questionNumber'] == $questionsCount)
-	{
-		echo "<br><input type='submit' value='".gettext('End test')."' formaction='next.php' id='endTestButton'> <span style='font-weight: bold'><br>".gettext("Be careful when ending the test! This action can't be undone!");
-	}
-	else
-	{
-		echo " | <input type='submit' value='".gettext('Next question')." >' formaction='next.php' style='margin-top: 6px; padding: 5px;' id='okButton'>";
-	}
-}
-if ($_SESSION['packType'] == 'standard' || $_SESSION['packType'] == 'quiz')
-{
-	echo "<br><br><a href='endgame.php' style='color: black; font-size: 16px;'>".gettext('Abort game')."</a>";
-}
-if ($_SESSION['packType'] == 'test')
-{
-	echo "<br><br><a href='endgame.php' style='color: black; font-size: 16px;'>".gettext('Abort test')."</a>";
-}
+echo "<input type='submit' value='OK' style='margin: 6px;' id='okButton'>";
+echo "<br><br><a href='endgame.php' style='color: black; font-size: 16px;'>".gettext('Abort game')."</a>";
 ?>
 </form>
 <script>

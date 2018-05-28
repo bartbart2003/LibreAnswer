@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Answer v0.1\n"
-"POT-Creation-Date: 2018-03-11 18:24+0100\n"
-"PO-Revision-Date: 2018-03-11 18:25+0100\n"
+"POT-Creation-Date: 2018-05-08 18:21+0200\n"
+"PO-Revision-Date: 2018-05-08 18:21+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pl_PL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.5\n"
+"X-Generator: Poedit 2.0.6\n"
 "X-Poedit-Basepath: ../../..\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
@@ -20,240 +20,250 @@ msgstr ""
 msgid "LibreAnswer - About"
 msgstr "LibreAnswer - Informacje"
 
-#: about.php:16
+#: about.php:17
 msgid "A game inspired by the 'Who Wants to Be a Millionaire?' TV show."
 msgstr ""
 "Gra inspirowana programem telewizyjnym 'Who Wants to Be a Millionaire?'."
 
-#: about.php:17
+#: about.php:18
 msgid "Version that this server is using is"
 msgstr "Wersja, jakiej używa ten serwer to"
 
-#: about.php:18
+#: about.php:19
 msgid "Webpage:"
 msgstr "Strona internetowa:"
 
-#: about.php:19
+#: about.php:20
 msgid "Source code:"
 msgstr "Kod źródłowy:"
 
-#: about.php:19
+#: about.php:20
 msgid "LibreAnswer repo on GitHub"
 msgstr "Repozytorium LibreAnswer na GitHubie"
 
-#: about.php:20
+#: about.php:21
 msgid "License"
 msgstr "Licencja"
 
-#: about.php:21
+#: about.php:22
 msgid "LibreAnswer is created by bartbart2003 and SildiN."
 msgstr "LibreAnswer jest stworzony przez bartbart2003 i SildiN."
 
-#: afterlast.php:22
-msgid "LibreAnswer - Congratulations!"
-msgstr "LibreAnswer - Gratulacje!"
-
-#: afterlast.php:23
-msgid "You won the game!"
-msgstr "Wygrałeś grę!"
-
-#: afterlast.php:24 afterlast.php:49 check.php:80 check.php:175 check.php:185
-#: next.php:50 next.php:74 next.php:153 next.php:177
-msgid "End game"
-msgstr "Zakończ grę"
-
-#: afterlast.php:30
-msgid "Answers already saved!"
-msgstr "Pytania już zapisane!"
-
-#: afterlast.php:39
-msgid "You completed the test!"
-msgstr "Skończyłeś test!"
-
-#: afterlast.php:40 question.php:93
-msgid "End test"
-msgstr "Zakończ test"
-
-#: afterlast.php:47
+#: afterlast.php:28
 msgid "You completed the quiz!"
 msgstr "Skończyłeś quiz!"
 
-#: afterlast.php:48
+#: afterlast.php:29 next.php:141 next.php:355
 msgid "Correct answers:"
 msgstr "Poprawne odpowiedzi:"
 
-#: check.php:43 check.php:50 check.php:117
-msgid "Question"
-msgstr "Pytanie"
+#: afterlast.php:30 afterlast.php:36 next.php:55 next.php:76 next.php:89
+#: next.php:103 next.php:116 next.php:181 next.php:200 next.php:213
+#: next.php:227 next.php:240 next.php:273 next.php:293 next.php:304
+#: next.php:318 next.php:329 next.php:391 next.php:409 next.php:420
+#: next.php:433 next.php:443
+msgid "End game"
+msgstr "Zakończ grę"
 
-#: check.php:44 check.php:51 check.php:59
-msgid "Correct answer:"
-msgstr "Poprawna odpowiedź:"
+#: afterlast.php:34
+msgid "LibreAnswer - Congratulations!"
+msgstr "LibreAnswer - Gratulacje!"
 
-#: check.php:45
-msgid "Correct answer!"
-msgstr "Poprawna odpowiedź!"
+#: afterlast.php:35
+msgid "You won the game!"
+msgstr "Wygrałeś grę!"
 
-#: check.php:52 next.php:49 next.php:152
-msgid "Incorrect answer!"
-msgstr "Zła odpowiedź!"
-
-#: check.php:57 check.php:184 check.php:189 next.php:73 next.php:176
-msgid "Invalid/no answer passed!"
-msgstr "Niepoprawna odpowiedź lub jej brak!"
-
-#: check.php:69 check.php:76 check.php:164 check.php:171 check.php:190
-#: question.php:97
-msgid "Next question"
-msgstr "Następne pytanie"
-
-#: check.php:118
-msgid "Correct answers/your answers:"
-msgstr "Poprawne odpowiedzi/twoje odpowiedzi:"
-
-#: check.php:139 check.php:148
-msgid "true"
-msgstr "prawda"
-
-#: check.php:143 check.php:152
-msgid "false"
-msgstr "fałsz"
-
-#: fifty.php:18 hint.php:17
+#: fifty.php:21 hint.php:17
 msgid "Error: lifeline already used!"
 msgstr "Błąd: Koło ratunkowe już użyte!"
 
-#: index.php:34
+#: index.php:90
 msgid "Select a question pack."
 msgstr "Wybierz paczkę pytań."
 
-#: index.php:35
+#: index.php:91
 msgid "Answer the questions."
 msgstr "Odpowiadaj na pytania."
 
-#: index.php:36
+#: index.php:92
 msgid "Check your knowedgle!"
 msgstr "Sprawdź swoją wiedzę!"
 
-#: index.php:38
+#: index.php:94
 msgid "Let's go!"
 msgstr "Zaczynamy!"
 
-#: index.php:39
+#: index.php:95
 msgid "or..."
 msgstr "lub..."
 
-#: index.php:40
+#: index.php:96
 msgid "learn how to create your own question pack"
 msgstr "zobacz, jak stworzyć swoją własną paczkę pytań"
 
-#: index.php:41
+#: index.php:97
 msgid "by bartbart2003 and SildiN"
 msgstr "stworzone przez bartbart2003 i SildiN"
 
-#: index.php:41
+#: index.php:97
 msgid "About"
 msgstr "O projekcie"
 
-#: index.php:41
+#: index.php:97
 msgid "Found a bug? Have an idea? Click here!"
 msgstr "Znalazłeś błąd? Masz jakiś pomysł? Kliknij tutaj!"
 
-#: question.php:31
+#: next.php:34 next.php:256
+msgid "Question"
+msgstr "Pytanie"
+
+#: next.php:52 next.php:177 next.php:270 next.php:387
+msgid "Correct answer!"
+msgstr "Poprawna odpowiedź!"
+
+#: next.php:61 next.php:82 next.php:109 next.php:187 next.php:206 next.php:233
+msgid "Next question"
+msgstr "Następne pytanie"
+
+#: next.php:67 next.php:192 next.php:284 next.php:401
+msgid "Incorrect answer!"
+msgstr "Zła odpowiedź!"
+
+#: next.php:69 next.php:286
+msgid "Correct answer:"
+msgstr "Poprawna odpowiedź:"
+
+#: next.php:95 next.php:219 next.php:310 next.php:426
+msgid "Invalid/no answer passed!"
+msgstr "Niepoprawna odpowiedź lub jej brak!"
+
+#: next.php:158 next.php:372
+msgid "true"
+msgstr "prawda"
+
+#: next.php:162 next.php:376
+msgid "false"
+msgstr "fałsz"
+
+#: next.php:278 next.php:298 next.php:323 next.php:396 next.php:414
+#: next.php:438 next.php:457
+msgid "Go to question"
+msgstr "Przejdź do pytania"
+
+#: next.php:456
+msgid "Incorrect question number!"
+msgstr "Nieprawidłowy numer pytania!"
+
+#: question.php:35
 msgid "LibreAnswer - Question"
 msgstr "LibreAnswer - Pytanie"
 
-#: question.php:31
+#: question.php:35
 msgid "of"
 msgstr "z"
 
-#: question.php:33
+#: question.php:37
 msgid "HINT"
 msgstr "WSKAZÓWKA"
 
-#: question.php:33
+#: question.php:37
 msgid "50/50"
 msgstr "50/50"
 
-#: question.php:67
+#: question.php:72
 msgid "True"
 msgstr "Prawda"
 
-#: question.php:68
+#: question.php:73
 msgid "False"
 msgstr "Fałsz"
 
-#: question.php:82
-msgid "Clear answer"
-msgstr "Wyczyść odpowiedź"
-
-#: question.php:85 question.php:89
-msgid "Previous question"
-msgstr "Poprzednie pytanie"
-
-#: question.php:93
-msgid "Be careful when ending the test! This action can't be undone!"
-msgstr "Bądź ostrożny przy kończeniu testu! Ta akcja nie może zostać cofnięta!"
-
-#: question.php:102
+#: question.php:83
 msgid "Abort game"
 msgstr "Porzuć grę"
 
-#: question.php:106
-msgid "Abort test"
-msgstr "Porzuć test"
-
-#: question.php:116
+#: question.php:92
 msgid "Hint:"
 msgstr "Wskazówka:"
 
-#: selectpack.php:22
+#: selectpack.php:31
 msgid "Select a question pack:"
 msgstr "Wybierz paczkę pytań:"
 
-#: selectpack.php:47
-msgid "Author:"
-msgstr "Autor:"
+#: selectpack.php:62 selectpack.php:70
+msgid "hint"
+msgstr "wskazówka"
 
-#: selectpack.php:47
+#: selectpack.php:74
+msgid "no lifelines"
+msgstr "brak kół ratunkowych"
+
+#: selectpack.php:77
 msgid "Language:"
 msgstr "Język:"
 
-#: selectpack.php:47
-msgid "Pack type:"
-msgstr "Typ paczki:"
-
-#: selectpack.php:47
+#: selectpack.php:77
 msgid "Difficulty:"
 msgstr "Poziom trudności:"
 
-#: selectpack.php:47 selectpack.php:79
+#: selectpack.php:77 selectpack.php:109
 msgid "Show details"
 msgstr "Pokaż szczegóły"
 
-#: selectpack.php:47
+#: selectpack.php:77
 msgid "License:"
 msgstr "Licencja:"
 
-#: selectpack.php:47
+#: selectpack.php:77
 msgid "Description:"
 msgstr "Opis:"
 
-#: selectpack.php:51
+#: selectpack.php:81
 msgid "No question packs available"
 msgstr "Brak dostępnych paczek pytań"
 
-#: selectpack.php:57
+#: selectpack.php:87
 msgid "Username:"
 msgstr "Nazwa użytkownika:"
 
-#: selectpack.php:61
+#: selectpack.php:91
 msgid "Start!"
 msgstr "Start!"
 
-#: selectpack.php:69
+#: selectpack.php:99
 msgid "Hide details"
 msgstr "Ukryj szczegóły"
+
+#~ msgid "Answers already saved!"
+#~ msgstr "Pytania już zapisane!"
+
+#~ msgid "You completed the test!"
+#~ msgstr "Skończyłeś test!"
+
+#~ msgid "End test"
+#~ msgstr "Zakończ test"
+
+#~ msgid "Correct answers/your answers:"
+#~ msgstr "Poprawne odpowiedzi/twoje odpowiedzi:"
+
+#~ msgid "Clear answer"
+#~ msgstr "Wyczyść odpowiedź"
+
+#~ msgid "Previous question"
+#~ msgstr "Poprzednie pytanie"
+
+#~ msgid "Be careful when ending the test! This action can't be undone!"
+#~ msgstr ""
+#~ "Bądź ostrożny przy kończeniu testu! Ta akcja nie może zostać cofnięta!"
+
+#~ msgid "Abort test"
+#~ msgstr "Porzuć test"
+
+#~ msgid "Author:"
+#~ msgstr "Autor:"
+
+#~ msgid "Pack type:"
+#~ msgstr "Typ paczki:"
 
 #~ msgid "Play now!"
 #~ msgstr "Graj teraz!"

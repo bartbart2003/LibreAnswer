@@ -7,6 +7,8 @@ require_once 'private/main.php';
 ?>
 <html>
 <head>
+<!-- Icons from Font Awesome -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
 <title>LibreAnswer</title>
 <script src='js/jquery.js'></script>
 <link rel="shortcut icon" href="favicon.ico" >
@@ -35,23 +37,53 @@ $i = 0;
 while ($row = $results->fetch_assoc())
 {
 	$i++;
-	if ($row['packType'] == 'standard')
+	echo "<span style='background-color: ";
+	if (strpos($row['packAttributes'],'q') !== false)
 	{
-		echo "<span style='background-color: lightsteelblue' id='packTab'><label><input type='radio' name='packname' onclick='disableUsernameBox()'";
-	}
-	else if ($row['packType'] == 'test')
-	{
-		echo "<span style='background-color: orange' id='packTab'><label><input type='radio' name='packname' onclick='enableUsernameBox()'";
-	}
-	else if ($row['packType'] == 'quiz')
-	{
-		echo "<span style='background-color: lime' id='packTab'><label><input type='radio' name='packname' onclick='disableUsernameBox()'";
+		echo 'lime';
 	}
 	else
 	{
-		echo "<span style='background-color: lightgray;' id='packTab'><label><input type='radio' name='packname' onclick='disableUsernameBox()'";
+		echo 'darkturquoise';
 	}
-	echo " value='".htmlentities($row['packname'])."'><b>".htmlentities($row['packDisplayName'])."</b></label><br><div style='display: inline-block; width: 100%; border-bottom: 1px solid black; font-size: 14px; margin-bottom: 6px;'>".htmlentities($row['packAuthor'])."</div><br>".gettext("Language:")." ".htmlentities($row['packLanguage'])."<br>".gettext("Pack type:")." ".htmlentities($row['packType'])."<br>".gettext("Difficulty:")." ".str_repeat('★', htmlentities($row['difficulty']))."<br><button class='detailsButton' id='detailsButton_".htmlentities($row['packname'])."' type='button' onclick=\"showDetails('".htmlentities($row['packname'])."')\">".gettext('Show details')."</button><span class='packDetails_".htmlentities($row['packname'])."' style='visibility: hidden; display: none;'><br>".gettext("License:")." ".htmlentities($row['license'])."<br>".gettext("Description:")." ".htmlentities($row['packDescription'])."</span></span>";
+	echo "' id='packTab'><label><div style='display: inline-block; width: 100%;'>";
+	// FontAwesome icon
+	if ($row['packIconType'] == 'fa')
+	{
+		echo "<span class='fas fa-";
+		echo htmlentities($row['packIcon']);
+		echo "' style='display: inline-block; font-size: 30px; background-color: antiquewhite; border-radius: 10px; padding: 8px;'></span>";
+	}
+	// Image
+	else if ($row['packIconType'] == 'img')
+	{
+		echo "<span style='display: inline-block; background-color: antiquewhite; background-image: url(\"".htmlentities($row['packIcon'])."\"); background-repeat: no-repeat; background-size: cover; width: 40px; height: 40px; border-radius: 10px; padding: 8px;'></span>";
+	}
+	// Default
+	else
+	{
+		echo "<span class='fas fa-box-open' style='display: inline-block; font-size: 30px; background-color: antiquewhite; border-radius: 10px; padding: 8px;'></span>";
+	}
+	echo "</div><input type='radio' name='packname' onclick='disableUsernameBox()'";
+	echo " value='".htmlentities($row['packname'])."'><b>".htmlentities($row['packDisplayName'])."</b></label><br><div style='display: inline-block; width: 100%; border-bottom: 1px solid black; font-size: 14px; margin-bottom: 6px;'>".htmlentities($row['packAuthor'])."</div><br><div style='font-size: 10px; text-align: left; display: block; width: 100%;'>";
+	if (strpos($row['packAttributes'],'f') !== false && strpos($row['packAttributes'],'h') !== false)
+	{
+		echo "50/50, ".gettext("hint");
+	}
+	else if (strpos($row['packAttributes'],'h') !== false)
+	{
+		echo '50/50';
+	}
+	else if (strpos($row['packAttributes'],'f') !== false)
+	{
+		echo gettext("hint");
+	}
+	else
+	{
+		echo gettext("no lifelines");
+	}
+	echo "</div>";
+	echo gettext("Language:")." ".htmlentities($row['packLanguage'])."<br><button class='detailsButton' id='detailsButton_".htmlentities($row['packname'])."' type='button' onclick=\"showDetails('".htmlentities($row['packname'])."')\">".gettext('Show details')."</button><span class='packDetails_".htmlentities($row['packname'])."' style='visibility: hidden; display: none;'><br>".gettext("License:")." ".htmlentities($row['packLicense'])."<br>".gettext("Description:")." ".htmlentities($row['packDescription'])."</span></span>";
 }
 if ($i == 0)
 {

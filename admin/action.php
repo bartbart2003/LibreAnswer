@@ -22,11 +22,7 @@ if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'])
 		{
 			$quePackManager = new questionPacksManager();
 			$deleteUserAnswers = false;
-			if (isset($_POST['deleteua']) && $_POST['deleteua'] == 'true')
-			{
-				$deleteUserAnswers = true;
-			}
-			$quePackManager->deleteQuestionPack($_POST['packname'], $deleteUserAnswers);
+			$quePackManager->deleteQuestionPack($_POST['packname']);
 			echo "<div style='text-align: center; font-size: 16px; font-weight: bold; '>".gettext('Pack deleted.')." <a href='panel.php' style='color: black'>".gettext('Return to homepage')."</a></div>";
 		}
 		else

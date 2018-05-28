@@ -5,7 +5,7 @@ session_start();
 require_once 'private/main.php';
 // Translations
 require_once 'lang.php';
-isset($_SESSION['gameStarted']) or die("Error: Game not started!<br><a href='index.php'>Return</a>");
+($_SESSION['gameStarted'] == true) or die("Error: Game not started!<br><a href='index.php'>Return</a>");
 $queManager = new questionsManager();
 $row = $queManager->getQuestion($_SESSION['packname'], $_SESSION['questionNumber']);
 ($row['questionType'] != 'tf') or die("Error: Not available in this question type!");
