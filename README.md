@@ -1,4 +1,3 @@
-# **WARNING: THIS PROJECT IS IN BETA! ANYTHING CAN BE ADDED, CHANGED OR REMOVED WITHOUT NOTICE!**
 # LibreAnswer
 ## Official server
 You can play LibreAnswer on the official server at http://ans.bartbart.pl.
