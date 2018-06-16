@@ -72,11 +72,11 @@ while ($row = $results->fetch_assoc())
 	}
 	else if (strpos($row['packAttributes'],'h') !== false)
 	{
-		echo '50/50';
+		echo 'hint';
 	}
 	else if (strpos($row['packAttributes'],'f') !== false)
 	{
-		echo gettext("hint");
+		echo gettext("50/50");
 	}
 	else
 	{
