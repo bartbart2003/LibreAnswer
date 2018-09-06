@@ -33,10 +33,10 @@ if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'])
 	}
 	if ($_POST['action'] == 'importPack')
 	{
-		if (isset ($_POST['packFilename']) && file_exists('import/'.$_POST['packFilename']))
+		if (isset($_POST['location']) && $_POST['location'] == 'local' && isset ($_POST['packFile']) && file_exists('import/'.$_POST['packFile']) || isset($_POST['location']) && $_POST['location'] == 'remote')
 		{
 			$quePackManager = new questionPacksManager();
-			$importStatus = $quePackManager->importQuestionPack($_POST['packFilename']);
+			$importStatus = $quePackManager->importQuestionPack($_POST['location'], $_POST['packFile']);
 			if ($importStatus == 'ok')
 			{
 				echo "<div style='text-align: center; font-size: 16px; font-weight: bold; '>".gettext('Pack imported.')." <a href='panel.php' style='color: black'>".gettext('Return to homepage')."</a></div>";

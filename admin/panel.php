@@ -41,21 +41,32 @@ if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'])
 		echo "<div style='text-align: center; font-weight: bold; font-size: 16px; padding: 10px;'>".gettext("No question packs")."</div>";
 	}
 	echo '</div>';
-	//SECTION: import pack
-	echo "<div style='background-color: gainsboro; padding-top: 5px; padding-bottom: 5px; margin-top: 5px;'><div style='text-align: center; font-size: 17px; font-weight: bold;'>".gettext('Pack import')."</div>";
-	echo "<div style='text-align: center; font-size: 15px; font-weight: bold; color: red;'>".gettext("Files should be placed in the import/ directory")."</div>";
+	//SECTION: Local pack import
+	echo "<div style='background-color: gainsboro; padding-top: 5px; padding-bottom: 5px; margin-top: 5px;'><div style='text-align: center; font-size: 17px; font-weight: bold;'>".gettext('Local pack import')."</div>";
+	echo "<div style='text-align: center; font-size: 15px; font-weight: bold; color: red;'>".gettext("Files should be placed in the admin/import/ directory")."</div>";
 	echo "<form action='action.php' method='post' style='text-align: center;'>";
 	$files = glob('import/*.aqf');
 	foreach($files as $file)
 	{
 		$file = substr($file, 7);
-		echo "<label><input type='radio' name='packFilename' value='".$file."'>".$file."</label><br>";
+		echo "<label><input type='radio' name='packFile' value='".$file."'>".$file."</label><br>";
 	}
 	echo "<input type='hidden' name='action' value='importPack'>";
+	echo "<input type='hidden' name='location' value='local'>";
 	echo "<input type='submit' value='".gettext('Import pack')."' id='okButton'>";
 	echo '</form>';
 	echo '</div>';
-	echo "<a href='logout.php' style='color: black; float: right; font-size: 15px; font-weight: bold;'>".gettext("Logout")."</div>";
+	//SECTION: Remote pack import
+	echo "<div style='background-color: gainsboro; padding-top: 5px; padding-bottom: 5px; margin-top: 5px;'><div style='text-align: center; font-size: 17px; font-weight: bold;'>".gettext('Remote pack import')."</div>";
+	echo "<div style='text-align: center; font-size: 15px; font-weight: bold; color: red;'>".gettext("Upload packs only from trusted URLs!")."</div>";
+	echo "<form action='action.php' method='post' style='text-align: center;'>";
+	echo "URL: <input type='text' name='packFile' value='' style='border: 1px solid black; height: 20px; margin-bottom: 2px;'><br>";
+	echo "<input type='hidden' name='action' value='importPack'>";
+	echo "<input type='hidden' name='location' value='remote'>";
+	echo "<input type='submit' value='".gettext('Import pack')."' id='okButton'>";
+	echo '</form>';
+	echo '</div>';
+	echo "<a href='logout.php' style='color: black; float: right; font-size: 15px; font-weight: bold;'>".gettext("Logout")."</a>";
 }
 else
 {

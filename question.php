@@ -1,6 +1,15 @@
 <?php
+// Main
+require_once 'private/main.php';
+
 session_start();
-($_SESSION['gameStarted'] == true) or die("Error: Game not started!<br><a href='index.php'>Return</a>");
+
+$queManager = new questionsManager();
+($queManager->getContentCount($_SESSION['packname']) >= $_SESSION['contentNumber']) or die("<script>window.location.href = 'afterlast.php'</script>");
+$row = $queManager->getContent($_SESSION['packname'], $_SESSION['contentNumber']);
+(isset($_SESSION['gameStarted']) && $_SESSION['gameStarted']) or die("Error: Game not started!<br><a href='index.php'>Return</a>");
+($row['contentType'] == 'abcd' || $row['contentType'] == 'tf' || $row['contentType'] == 'info') or die("Error: Invalid content type!");
+($row['contentType'] != 'info') or die("<script>window.location.href = 'next.php?contentNumber=".$_SESSION['contentNumber']."'</script>");
 ?>
 <!DOCTYPE html>
 <html>
@@ -25,16 +34,12 @@ if ($_SESSION['backgroundsEnabled'])
 <?php
 // Translations
 require_once 'lang.php';
-// Main
-require_once 'private/main.php';
 $questionText = '';
-$queManager = new questionsManager();
-$row = $queManager->getQuestion($_SESSION['packname'], $_SESSION['questionNumber']);
 $questionsCount = $queManager->getQuestionsCount($_SESSION['packname']);
 ?>
 <div style='background-color: #C1B596; text-align: center; font-size: 21px; border-radius: 10px;'><?php echo gettext('LibreAnswer - Question') ?> <?php echo $_SESSION['questionNumber'] ?> <?php echo gettext('of') ?> <?php echo $questionsCount ?></div>
 <!-- Lifelines -->
-<div style='background-color: aquamarine; text-align: center; font-size: 20px; border-radius: 10px; width: 240px; margin: 0 auto; padding-left: 15px; padding-right: 15px; margin-bottom: 5px;'><?php if (strpos($_SESSION['lifelines'],'h') !== false) { echo "<button onclick='getHint();' id='lifelineHintButton'>".gettext('HINT')."</button>"; } ?><?php if (strpos($_SESSION['lifelines'],'f') !== false && $row['questionType'] != 'tf') { echo "<button onclick='getFF();' id='lifelineFFButton'>".gettext('50/50')."</button>"; } ?></div>
+<div style='background-color: aquamarine; text-align: center; font-size: 20px; border-radius: 10px; width: 240px; margin: 0 auto; padding-left: 15px; padding-right: 15px; margin-bottom: 5px;'><?php if (strpos($_SESSION['lifelines'],'h') !== false) { echo "<button onclick='getHint();' id='lifelineHintButton'>".gettext('HINT')."</button>"; } ?><?php if (strpos($_SESSION['lifelines'],'f') !== false && $row['contentType'] != 'tf') { echo "<button onclick='getFF();' id='lifelineFFButton'>".gettext('50/50')."</button>"; } ?></div>
 <!-- Multimedia -->
 <?php
 // YouTube video
@@ -65,11 +70,11 @@ if ($row['multimediaType'] == 'vid')
 <div id='hintDiv' style='visibility: hidden; text-align: center; background-color: lime; border-radius: 10px; font-size: 18px;'></div>
 <form method='get' style='text-align: center;' id='answersForm' action='next.php'>
 <?php
-// Question number
-echo "<input type='hidden' name= 'questionNumber' value='".$_SESSION['questionNumber']."'>";
+// Content number
+echo "<input type='hidden' name='contentNumber' value='".$_SESSION['contentNumber']."'>";
 
 // ABCD answers
-if ($row['questionType'] == 'abcd')
+if ($row['contentType'] == 'abcd')
 {
 	for ($i = 1; $i<5; $i++)
 	{
@@ -83,7 +88,7 @@ if ($row['questionType'] == 'abcd')
 }
 
 // True/false answers
-if ($row['questionType'] == 'tf')
+if ($row['contentType'] == 'tf')
 {
 	echo "<div style='display: inline-block; text-align: center; width: 400px; max-width: 90vw;'>";
 	for ($i = 1; $i<5; $i++)

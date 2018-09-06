@@ -34,23 +34,23 @@ class questionPacksManager
 
 class questionsManager
 {
-	public function getQuestion($packname, $questionID)
+	public function getContent($packname, $contentID)
 	{
 		$dbConnector = new databaseConnector();
 		$dbConnector->connectToDatabase();
-		$query = $dbConnector->conn->prepare("SELECT * FROM pack_".$packname." WHERE questionID=?");
-		$query->bind_param('s', $questionID);
+		$query = $dbConnector->conn->prepare("SELECT ID, contentType, multimediaType, multimediaContent, question, answer1, answer2, answer3, answer4, hint, correctAnswer, questionExtra, title, description FROM (SELECT ID, contentType, multimediaType, multimediaContent, question, answer1, answer2, answer3, answer4, hint, correctAnswer, questionExtra, null as title, null as description FROM pack_".$packname."_abcd UNION SELECT ID, contentType, multimediaType, multimediaContent, question, answer1, answer2, answer3, answer4, hint, correctAnswer, questionExtra, null as title, null as description FROM pack_".$packname."_tf UNION SELECT ID, contentType, null as multimediaType, null as multimediaContent, null as question, null as answer1, null as answer2, null as answer3, null as answer4, null as hint, null as correctAnswer, null as questionExtra, title, description FROM pack_".$packname."_info) as t WHERE ID=?");
+		$query->bind_param('i', $contentID);
 		$query->execute();
 		$results = $query->get_result();
 		$row = $results->fetch_assoc();
 		return $row;
 	}
 	
-	public function getQuestionsCount($packname)
+	public function getContentCount($packname)
 	{
 		$dbConnector = new databaseConnector();
 		$dbConnector->connectToDatabase();
-		$query = 'SELECT COUNT(*) as rowscount FROM pack_'.$packname;
+		$query = 'SELECT COUNT(*) as rowscount FROM (SELECT ID FROM pack_'.$packname.'_abcd UNION SELECT ID FROM pack_'.$packname.'_tf UNION SELECT ID FROM pack_'.$packname.'_info) as t;';
 		$results = $dbConnector->conn->query($query);
 		$questionsCount = 0;
 		while ($row = $results->fetch_assoc()) {
@@ -59,79 +59,33 @@ class questionsManager
 		return $questionsCount;
 	}
 	
-	public function getValidAnswer($questionID, $packname)
+	public function getQuestionsCount($packname)
 	{
 		$dbConnector = new databaseConnector();
 		$dbConnector->connectToDatabase();
-		$query = $dbConnector->conn->prepare("SELECT * FROM pack_".$packname." WHERE questionID=?");
-		$query->bind_param('s', $questionID);
-		$query->execute();
-		$results = $query->get_result();
-		$row = $results->fetch_assoc();
-		return $row['correctAnswer'];
-	}
-	
-	public function getQuestionType($questionID, $packname)
-	{
-		$dbConnector = new databaseConnector();
-		$dbConnector->connectToDatabase();
-		$query = $dbConnector->conn->prepare("SELECT * FROM pack_".$packname." WHERE questionID=?");
-		$query->bind_param('s', $questionID);
-		$query->execute();
-		$results = $query->get_result();
-		$row = $results->fetch_assoc();
-		return $row['questionType'];
-	}
-	
-	public function getExtraInfo($questionID, $packname)
-	{
-		$dbConnector = new databaseConnector();
-		$dbConnector->connectToDatabase();
-		$query = $dbConnector->conn->prepare("SELECT * FROM pack_".$packname." WHERE questionID=?");
-		$query->bind_param('s', $questionID);
-		$query->execute();
-		$results = $query->get_result();
-		$row = $results->fetch_assoc();
-		return $row['questionExtra'];
-	}
-}
-class userAnswersManager
-{
-	public function insertUserAnswer($userUsername, $userAnswers, $packname)
-	{
-		$dbConnector = new databaseConnector();
-		$dbConnector->connectToDatabase();
-		$query = $dbConnector->conn->prepare("INSERT INTO answers_".$packname." (username, userAnswers) VALUES (?,?)");
-		$query->bind_param('ss', $userUsername, $userAnswers);
-		$results = $query->execute();
+		$query = 'SELECT COUNT(*) as rowscount FROM (SELECT ID FROM pack_'.$packname.'_abcd UNION SELECT ID FROM pack_'.$packname.'_tf) as t;';
+		$results = $dbConnector->conn->query($query);
+		$questionsCount = 0;
+		while ($row = $results->fetch_assoc()) {
+			$questionsCount = $row['rowscount'];
+		}
+		return $questionsCount;
 	}
 }
 
 class lifelinesManager
 {
-	public function getHintText($questionID, $packname)
+	public function getHintText($contentID, $packname)
 	{
-		$dbConnector = new databaseConnector();
-		$dbConnector->connectToDatabase();
-		$query = $dbConnector->conn->prepare("SELECT * FROM pack_".$packname." WHERE questionID=?");
-		$query->bind_param('s', $questionID);
-		$query->execute();
-		$results = $query->get_result();
-		$row = $results->fetch_assoc();
+		$queManager = new questionsManager();
+		$row = $queManager->getContent($packname, $contentID);
 		return $row['hint'];
 	}
 	
-	public function getFiftyAnswers($questionID, $packname)
+	public function getFiftyAnswers($contentID, $packname)
 	{
-		$dbConnector = new databaseConnector();
-		$dbConnector->connectToDatabase();
-		$dbConnector = new databaseConnector();
-		$dbConnector->connectToDatabase();
-		$query = $dbConnector->conn->prepare("SELECT * FROM pack_".$packname." WHERE questionID=?");
-		$query->bind_param('s', $questionID);
-		$query->execute();
-		$results = $query->get_result();
-		$row = $results->fetch_assoc();
+		$queManager = new questionsManager();
+		$row = $queManager->getContent($packname, $contentID);
 		$correctAnswer = $row['correctAnswer'];
 		$incorrectAnswers = ['a', 'b', 'c', 'd'];
 		unset($incorrectAnswers[$correctAnswer - 1]);

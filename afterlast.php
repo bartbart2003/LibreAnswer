@@ -4,7 +4,7 @@ session_start();
 require_once 'lang.php';
 // Main
 require_once 'private/main.php';
-($_SESSION['gameStarted'] == true) or die("Error: Game not started!<br><a href='index.php'>Return</a>");
+(isset($_SESSION['gameStarted']) && $_SESSION['gameStarted']) or die("Error: Game not started!<br><a href='index.php'>Return</a>");
 ?>
 <!DOCTYPE html>
 <html>
@@ -22,24 +22,23 @@ $queManager = new questionsManager();
 $queCount = $queManager->getQuestionsCount($_SESSION['packname']);
 if ($_SESSION['questionNumber'] >= $queCount)
 {
-	if ($_SESSION['quizMode'])
+	if ($_SESSION['hardcoreMode'])
+	{
+		echo "<div style='background-color: lightgreen; text-align: center; font-size: 30px; border-top-left-radius: 10px; border-top-right-radius: 10px;'>".gettext('LibreAnswer - Congratulations!')."</div>";
+		echo "<div style='background-color: gold; text-align: center; font-size: 20px; font-weight: bold;'>".gettext('You won the game!')."</div>";
+		echo "<div style='background-color: gold; text-align: center; font-size: 15px; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;'><a href='endgame.php' style='color: black'>".gettext('End game')."</a></div>";
+	}
+	else
 	{
 		echo "<div style='background-color: lightgreen; text-align: center; font-size: 30px; border-top-left-radius: 10px; border-top-right-radius: 10px;'>LibreAnswer</div>";
 		echo "<div style='background-color: aquamarine; text-align: center; font-size: 20px; font-weight: bold;'>".gettext('You completed the quiz!')."</div>";
 		echo "<div style='background-color: aquamarine; text-align: center; font-size: 20px; font-weight: bold;'>".gettext('Correct answers:')." ".$_SESSION['correctUserAnswers']." / ".$queCount." (".round(($_SESSION['correctUserAnswers'] * 100 / $queCount), 1)."%)</div>";
 		echo "<div style='background-color: aquamarine; text-align: center; font-size: 15px; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;'><a href='endgame.php' style='color: black'>".gettext('End game')."</a></div>";
 	}
-	else
-	{	
-		echo "<div style='background-color: lightgreen; text-align: center; font-size: 30px; border-top-left-radius: 10px; border-top-right-radius: 10px;'>".gettext('LibreAnswer - Congratulations!')."</div>";
-		echo "<div style='background-color: gold; text-align: center; font-size: 20px; font-weight: bold;'>".gettext('You won the game!')."</div>";
-		echo "<div style='background-color: gold; text-align: center; font-size: 15px; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;'><a href='endgame.php' style='color: black'>".gettext('End game')."</a></div>";
-
-	}
 }
 else
 {
-	echo "Not last question!";
+	echo "Quiz not completed!";
 }
 ?>
 </body>

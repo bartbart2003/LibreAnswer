@@ -7,8 +7,6 @@ CREATE TABLE `packlist` (
   `packAuthor` text CHARACTER SET utf8 NOT NULL,
   `packDescription` text CHARACTER SET utf8 NOT NULL,
   `packLanguage` text CHARACTER SET utf8 NOT NULL,
-  `packLicense` text CHARACTER SET utf8 NOT NULL,
   `packAttributes` text CHARACTER SET utf8 NOT NULL,
-  `packDifficulty` text CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY (`packID`)
 );

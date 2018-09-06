@@ -32,53 +32,6 @@ class databaseConnector
 		}
 	}
 }
-class questionsManager
-{
-	public function getQuestionsCount($packname)
-	{
-		$dbConnector = new databaseConnector();
-		$dbConnector->connectToDatabase();
-		$query = 'SELECT COUNT(*) as rowscount FROM pack_'.$packname;
-		$results = $dbConnector->conn->query($query);
-		$questionsCount = 0;
-		while ($row = $results->fetch_assoc()) {
-			$questionsCount = $row['rowscount'];
-		}
-		return $questionsCount;
-	}
-	
-	public function getValidAnswer($questionID, $packname)
-	{
-		$dbConnector = new databaseConnector();
-		$dbConnector->connectToDatabase();
-		$query = $dbConnector->conn->prepare("SELECT * FROM pack_".$packname." WHERE questionID=?");
-		$query->bind_param('s', $questionID);
-		$query->execute();
-		$results = $query->get_result();
-		$row = $results->fetch_assoc();
-		return $row['correctAnswer'];
-	}
-}
-class userAnswersManager
-{
-	public function getUsersAnswers($packname)
-	{
-		$dbConnector = new databaseConnector();
-		$dbConnector->connectToDatabase();
-		$query = "SELECT * FROM answers_".$packname;
-		$results = $dbConnector->conn->query($query);
-		return $results;
-	}
-	
-	public function getQuestionPackAnswers($packname)
-	{
-		$dbConnector = new databaseConnector();
-		$dbConnector->connectToDatabase();
-		$query = "SELECT correctAnswer FROM pack_".$packname;
-		$results = $dbConnector->conn->query($query);
-		return $results;
-	}
-}
 
 class questionPacksManager
 {
@@ -98,15 +51,22 @@ class questionPacksManager
 		$query = $dbConnector->conn->prepare("DELETE FROM packlist WHERE packname=?;");
 		$query->bind_param('s', $packname);
 		$results = $query->execute();
-		$query = "DROP TABLE IF EXISTS pack_".$packname.";";
+		$query = "DROP TABLE IF EXISTS pack_".$packname."_abcd, pack_".$packname."_tf, pack_".$packname."_info;";
 		$results = $dbConnector->conn->query($query);
 	}
 	
-	public function importQuestionPack($packFilename)
+	public function importQuestionPack($packLocation, $packFile)
 	{
 		$dbConnector = new databaseConnector();
 		$dbConnector->connectToDatabase();
-		$csvImportFile = file('import/'.$packFilename);
+		if ($packLocation == 'remote')
+		{
+				$csvImportFile = file($packFile);
+		}
+		if ($packLocation == 'local')
+		{
+				$csvImportFile = file('import/'.$packFile);
+		}
 		$i = 0;
 		$packImport_packname = '';
 		$insertQuery = '';
@@ -114,7 +74,6 @@ class questionPacksManager
 		{
 			if ($line !== '' && $line !== "\n")
 			{
-				// IF : Line not empty
 				if (substr($line, 0, 1) == '#')
 				{
 					// IF: Comment
@@ -127,53 +86,40 @@ class questionPacksManager
 						$packImport_packname = str_getcsv($line)[0];
 						if ($packImport_packname == '')
 						{
-							break;
+							return 'eemptyname';
 						}
-						else
-						{
-							$query = $dbConnector->conn->prepare("INSERT INTO packlist (packname, packDisplayName, packIconType, packIcon, packAuthor, packDescription, packLanguage, packLicense, packAttributes) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);");
-							$query->bind_param('sssssssss', $packImport_packname, str_getcsv($line)[1], str_getcsv($line)[2], str_getcsv($line)[3], str_getcsv($line)[4], str_getcsv($line)[5], str_getcsv($line)[6], str_getcsv($line)[7], str_getcsv($line)[8]);
-							$results = $query->execute();
-							$query = "CREATE TABLE IF NOT EXISTS pack_".$packImport_packname." (`questionID` int(11) NOT NULL AUTO_INCREMENT, `question` text CHARACTER SET utf8 NOT NULL, `multimediaType` text CHARACTER SET utf8 NOT NULL, `multimediaContent` text CHARACTER SET utf8 NOT NULL, `hint` text CHARACTER SET utf8 NOT NULL, `answer1` text CHARACTER SET utf8 NOT NULL, `answer2` text CHARACTER SET utf8 NOT NULL, `answer3` text CHARACTER SET utf8 NOT NULL, `answer4` text CHARACTER SET utf8 NOT NULL, `correctAnswer` text CHARACTER SET utf8 NOT NULL, `questionType` text CHARACTER SET utf8 NOT NULL, `questionExtra` text CHARACTER SET utf8 NOT NULL, PRIMARY KEY (`questionID`));";
-							$results = $dbConnector->conn->query($query);
-							$insertQuery = $insertQuery."INSERT INTO pack_".$packImport_packname." (question, multimediaType, multimediaContent, hint, answer1, answer2, answer3, answer4, correctAnswer, questionType, questionExtra) VALUES";
-						}
+						$quePacksManager = new questionPacksManager();
+						$quePacksManager->deleteQuestionPack($packImport_packname);
+						$query = $dbConnector->conn->prepare("INSERT INTO packlist (packname, packDisplayName, packIconType, packIcon, packAuthor, packDescription, packLanguage, packAttributes) VALUES (?, ?, ?, ?, ?, ?, ?, ?);");
+						$query->bind_param('ssssssss', $packImport_packname, str_getcsv($line)[1], str_getcsv($line)[2], str_getcsv($line)[3], str_getcsv($line)[4], str_getcsv($line)[5], str_getcsv($line)[6], str_getcsv($line)[7]);
+						$results = $query->execute();
+						$query = "CREATE TABLE IF NOT EXISTS pack_".$packImport_packname."_abcd (`ID` int(11) NOT NULL, `contentType` text CHARACTER SET utf8 NOT NULL, `multimediaType` text CHARACTER SET utf8 NOT NULL, `multimediaContent` text CHARACTER SET utf8 NOT NULL, `question` text CHARACTER SET utf8 NOT NULL, `answer1` text CHARACTER SET utf8 NOT NULL, `answer2` text CHARACTER SET utf8 NOT NULL, `answer3` text CHARACTER SET utf8 NOT NULL, `answer4` text CHARACTER SET utf8 NOT NULL, `hint` text CHARACTER SET utf8 NOT NULL, `correctAnswer` text CHARACTER SET utf8 NOT NULL, `questionExtra` text CHARACTER SET utf8 NOT NULL, PRIMARY KEY (`ID`));";
+						$results = $dbConnector->conn->query($query);
+						$query = "CREATE TABLE IF NOT EXISTS pack_".$packImport_packname."_tf (`ID` int(11) NOT NULL, `contentType` text CHARACTER SET utf8 NOT NULL, `multimediaType` text CHARACTER SET utf8 NOT NULL, `multimediaContent` text CHARACTER SET utf8 NOT NULL, `question` text CHARACTER SET utf8 NOT NULL, `answer1` text CHARACTER SET utf8 NOT NULL, `answer2` text CHARACTER SET utf8 NOT NULL, `answer3` text CHARACTER SET utf8 NOT NULL, `answer4` text CHARACTER SET utf8 NOT NULL, `hint` text CHARACTER SET utf8 NOT NULL, `correctAnswer` text CHARACTER SET utf8 NOT NULL, `questionExtra` text CHARACTER SET utf8 NOT NULL, PRIMARY KEY (`ID`));";
+						$results = $dbConnector->conn->query($query);
+						$query = "CREATE TABLE IF NOT EXISTS pack_".$packImport_packname."_info (`ID` int(11) NOT NULL, `contentType` text CHARACTER SET utf8 NOT NULL, `title` text CHARACTER SET utf8 NOT NULL, `description` text CHARACTER SET utf8 NOT NULL, PRIMARY KEY (`ID`));";
+						$results = $dbConnector->conn->query($query);
 					}
 					else
 					{
-						$insertQuery = $insertQuery." (\"".str_getcsv($line)[0]."\", \"".str_getcsv($line)[1]."\", \"".str_getcsv($line)[2]."\", \"".str_getcsv($line)[3]."\", \"".str_getcsv($line)[4]."\", \"".str_getcsv($line)[5]."\", \"".str_getcsv($line)[6]."\", \"".str_getcsv($line)[7]."\", \"".str_getcsv($line)[8]."\", \"".str_getcsv($line)[9]."\", \"".str_getcsv($line)[10]."\"),";
+						if (str_getcsv($line)[0] == 'abcd' || str_getcsv($line)[0] == 'tf')
+						{
+							$query1 = $dbConnector->conn->prepare("INSERT INTO pack_".$packImport_packname."_".str_getcsv($line)[0]." (ID, contentType, multimediaType, multimediaContent, question, answer1, answer2, answer3, answer4, hint, correctAnswer, questionExtra) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
+							$query1->bind_param('isssssssssss', $i, str_getcsv($line)[0], str_getcsv($line)[1], str_getcsv($line)[2], str_getcsv($line)[3], str_getcsv($line)[4], str_getcsv($line)[5], str_getcsv($line)[6], str_getcsv($line)[7], str_getcsv($line)[8], str_getcsv($line)[9], str_getcsv($line)[10]);
+							$results = $query1->execute();
+						}
+						if (str_getcsv($line)[0] == 'info')
+						{
+							$query2 = $dbConnector->conn->prepare("INSERT INTO pack_".$packImport_packname."_info (ID, contentType, title, description) VALUES (?, ?, ?, ?);");
+							$query2->bind_param('isss', $i, str_getcsv($line)[0], str_getcsv($line)[1], str_getcsv($line)[2]);
+							$results = $query2->execute();
+						}
 					}
 					$i++;
 				}
 			}
 		}
-		if ($packImport_packname == '')
-		{
-			return 'eemptyname';
-		}
-		else
-		{
-			$insertQuery = substr($insertQuery, 0, -1).";";
-			$dbConnector->conn->query($insertQuery);
-			return 'ok';
-		}
-	}
-	
-	public function clearUserAnswers($packname)
-	{
-		$dbConnector = new databaseConnector();
-		$dbConnector->connectToDatabase();
-		$query = "TRUNCATE TABLE answers_".$packname;
-		$results = $dbConnector->conn->query($query);
-	}
-	
-	public function clearSingleAnswer($packname, $answerID)
-	{
-		$dbConnector = new databaseConnector();
-		$dbConnector->connectToDatabase();
-		$query = $dbConnector->conn->prepare("DELETE FROM answers_".$packname." WHERE answerID=?;");
-		$query->bind_param('s', $answerID);
-		$results = $query->execute();
+		return 'ok';
 	}
 }
 ?>

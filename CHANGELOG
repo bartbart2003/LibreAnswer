@@ -51,7 +51,7 @@ v0.5:
  - add HTML structure to more pages
  - add stats support (primarily intended for Matomo, may work with other tools)
 
-v0.5.1
+v0.5.1:
  - add a missing ":" in CHANGELOG
  - start session before DOCTYPE
 
@@ -63,3 +63,26 @@ v0.6:
  - replace "quiz" pack type with "quiz mode" ("q" pack attribute)
  - add debug pack
  - add support for multimedia content in questions (yt, vid, img)
+
+v0.6.1:
+ - fix question packs
+ - fix 50/50 and hint displaying in selectpack.php
+
+v0.7:
+ - different way of storing question packs in database
+ - support info-cards
+ - fix packlist.sql
+ - remove pack.sql (it's now obsolete)
+ - improve pack selection page layout
+ - remove license field for packs
+ - index.php: link to the creator instead of the wiki
+ - rebrand from "game" to "quiz making platform"
+ - "quiz mode" -> standard mode | old standard mode -> "hardcore mode"
+ - check if "gameStarted" session variable is set before checking its value
+ - show correct ABCD answer after invalid answer
+ - add remote import (from URL) to admin panel
+ - updated question packs to reflect changes
+ - UI changes in index.php
+ - bug fixes
+ - remove a lot of legacy code
+ - some other changes and improvements

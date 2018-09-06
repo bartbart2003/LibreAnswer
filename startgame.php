@@ -33,16 +33,17 @@ if ($packnameForSession == '')
 {
 	die("<br>Error: Question pack not found! <a href='selectpack.php'>Return</a>");
 }
-$_SESSION['username'] = $_POST['username'];
 $_SESSION['packname'] = $packnameForSession;
-$_SESSION['quizMode'] = false;
+$_SESSION['hardcoreMode'] = false;
 $_SESSION['lifelines'] = '';
 $_SESSION['backgroundsEnabled'] = false;
 $_SESSION['gameStarted'] = true;
 $_SESSION['questionNumber'] = '1';
+$_SESSION['contentNumber'] = '1';
 $_SESSION['formAnswer'] = '1';
 
 // Attributes
+$_SESSION['correctUserAnswers'] = 0;
 if (strpos($packAttributes,'h') !== false)
 {
 	$_SESSION['lifelines'] = $_SESSION['lifelines'].'h';
@@ -55,10 +56,9 @@ if (strpos($packAttributes,'b') !== false)
 {
 	$_SESSION['backgroundsEnabled'] = true;
 }
-if (strpos($packAttributes,'q') !== false)
+if (strpos($packAttributes,'m') !== false)
 {
-	$_SESSION['correctUserAnswers'] = 0;
-	$_SESSION['quizMode'] = true;
+	$_SESSION['hardcoreMode'] = true;
 }
 
 echo "<script>window.location.href = 'question.php';</script>";

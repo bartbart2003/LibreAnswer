@@ -38,13 +38,13 @@ while ($row = $results->fetch_assoc())
 {
 	$i++;
 	echo "<span style='background-color: ";
-	if (strpos($row['packAttributes'],'q') !== false)
+	if (strpos($row['packAttributes'],'m') !== false)
 	{
-		echo 'lime';
+		echo '#FC5F44';
 	}
 	else
 	{
-		echo 'darkturquoise';
+		echo 'lime';
 	}
 	echo "' id='packTab'><label><div style='display: inline-block; width: 100%;'>";
 	// FontAwesome icon
@@ -83,7 +83,7 @@ while ($row = $results->fetch_assoc())
 		echo gettext("no lifelines");
 	}
 	echo "</div>";
-	echo gettext("Language:")." ".htmlentities($row['packLanguage'])."<br><button class='detailsButton' id='detailsButton_".htmlentities($row['packname'])."' type='button' onclick=\"showDetails('".htmlentities($row['packname'])."')\">".gettext('Show details')."</button><span class='packDetails_".htmlentities($row['packname'])."' style='visibility: hidden; display: none;'><br>".gettext("License:")." ".htmlentities($row['packLicense'])."<br>".gettext("Description:")." ".htmlentities($row['packDescription'])."</span></span>";
+	echo gettext("Language:")." ".htmlentities($row['packLanguage'])."<br><button class='descButton' id='descButton_".htmlentities($row['packname'])."' type='button' onclick=\"showDesc('".htmlentities($row['packname'])."')\">".gettext('Show description')."</button><span class='packDesc_".htmlentities($row['packname'])."' style='visibility: hidden; display: none;'><br>".gettext("Description:")." ".htmlentities($row['packDescription'])."</span></span>";
 }
 if ($i == 0)
 {
@@ -101,23 +101,24 @@ if ($i == 0)
 </form>
 </div>
 <script>
-function showDetails(packname)
+// Description
+function showDesc(packname)
 {
-	document.getElementById('packSelectionForm').getElementsByClassName('packDetails_' + packname)[0].style.visibility = 'visible';
-	document.getElementById('packSelectionForm').getElementsByClassName('packDetails_' + packname)[0].style.display = 'inline';
-	document.getElementById('detailsButton_' + packname).innerHTML = <?php echo "'".gettext('Hide details')."'" ?>;
-	document.getElementById('detailsButton_' + packname).onclick = function() {
-		hideDetails(packname);
+	document.getElementById('packSelectionForm').getElementsByClassName('packDesc_' + packname)[0].style.visibility = 'visible';
+	document.getElementById('packSelectionForm').getElementsByClassName('packDesc_' + packname)[0].style.display = 'inline';
+	document.getElementById('descButton_' + packname).innerHTML = <?php echo "'".gettext('Hide description')."'" ?>;
+	document.getElementById('descButton_' + packname).onclick = function() {
+		hideDesc(packname);
 		};
 }
 
-function hideDetails(packname)
+function hideDesc(packname)
 {
-	document.getElementById('packSelectionForm').getElementsByClassName('packDetails_' + packname)[0].style.visibility = 'hidden';
-	document.getElementById('packSelectionForm').getElementsByClassName('packDetails_' + packname)[0].style.display = 'none';
-	document.getElementById('detailsButton_' + packname).innerHTML = <?php echo "'".gettext('Show details')."'" ?>;
-	document.getElementById('detailsButton_' + packname).onclick = function() {
-		showDetails(packname);
+	document.getElementById('packSelectionForm').getElementsByClassName('packDesc_' + packname)[0].style.visibility = 'hidden';
+	document.getElementById('packSelectionForm').getElementsByClassName('packDesc_' + packname)[0].style.display = 'none';
+	document.getElementById('descButton_' + packname).innerHTML = <?php echo "'".gettext('Show description')."'" ?>;
+	document.getElementById('descButton_' + packname).onclick = function() {
+		showDesc(packname);
 		};
 }
 

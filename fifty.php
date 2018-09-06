@@ -5,15 +5,21 @@ session_start();
 require_once 'private/main.php';
 // Translations
 require_once 'lang.php';
-($_SESSION['gameStarted'] == true) or die("Error: Game not started!<br><a href='index.php'>Return</a>");
+
+(isset($_SESSION['gameStarted']) && $_SESSION['gameStarted']) or die("Error: Game not started!<br><a href='index.php'>Return</a>");
+
+// Check if valid question
 $queManager = new questionsManager();
-$row = $queManager->getQuestion($_SESSION['packname'], $_SESSION['questionNumber']);
-($row['questionType'] != 'tf') or die("Error: Not available in this question type!");
+($queManager->getContentCount($_SESSION['packname']) >= $_SESSION['contentNumber']) or die("Invalid question number!");
+$row = $queManager->getContent($_SESSION['packname'], $_SESSION['contentNumber']);
+($row['contentType'] == 'abcd' || $row['contentType'] == 'tf') or die("Error: Not a question!");
+
+($row['contentType'] != 'tf') or die("Error: Not available in this question type!");
 
 if (strpos($_SESSION['lifelines'],'f') !== false)
 {
 	$llManager = new lifelinesManager();
-	$incorrectAnswers = $llManager->getFiftyAnswers($_SESSION['questionNumber'], $_SESSION['packname']);
+	$incorrectAnswers = $llManager->getFiftyAnswers($_SESSION['contentNumber'], $_SESSION['packname']);
 	echo $incorrectAnswers;
 }
 else
