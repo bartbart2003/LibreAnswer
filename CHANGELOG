@@ -86,3 +86,7 @@ v0.7:
  - bug fixes
  - remove a lot of legacy code
  - some other changes and improvements
+
+v0.7.1:
+ - update website URL
+ - removed e-mail button from homepage
